@@ -43,6 +43,9 @@ private static JoystickButton J_Thumb;
 
     configureButtonBindings();
 
+    J_Thumb().whenPressed(RobotContainer.commAngle());
+    J_Fire().whenPressed(RobotContainer.commShooter());
+
   }
 
   /**

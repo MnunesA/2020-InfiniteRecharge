@@ -61,9 +61,6 @@ public class SubsystemShooter extends SubsystemBase {
   @Override
   public void periodic() {
 
-    RobotContainer.J_Thumb().whenPressed(RobotContainer.commAngle());
-    RobotContainer.J_Fire().whenPressed(RobotContainer.commShooter());
-
     this.J_Fire = RobotContainer.J_Fire().get();
     this.J_Thumb = RobotContainer.J_Thumb().get();
 
