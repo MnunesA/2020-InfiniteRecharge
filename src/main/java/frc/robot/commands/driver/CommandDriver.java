@@ -29,8 +29,8 @@ public class CommandDriver extends CommandBase {
  
   @Override
   public void execute() {
-    this.linearSpeed = RobotContainer.xboxController().getY(RobotContainer.lHand());
-    this.rotationSpeed = RobotContainer.xboxController().getX(RobotContainer.rHand());
+    this.linearSpeed = RobotContainer.axis_LY();
+    this.rotationSpeed = RobotContainer.axis_RX();
     RobotContainer.subsDriver().arcadeDrive(this.linearSpeed, this.rotationSpeed);
   }
   

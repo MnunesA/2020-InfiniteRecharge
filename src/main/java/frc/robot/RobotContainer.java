@@ -9,7 +9,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.driver.CommandDriver;
 import frc.robot.subsystems.SubsystemDriver;
 
@@ -20,7 +19,15 @@ public class RobotContainer {
   private static CommandDriver runDriver;
 
   public RobotContainer() {
+    configureButtonBindings();
+    configureSubsystems();
+    configureCommands();
+    configureJoysticks();
+  }
 
+  private void configureButtonBindings() {}
+
+  private void configureSubsystems() {
     driver = new SubsystemDriver(
             Constants.MOTOR_LEFT_FRONT_ID,
             Constants.MOTOR_LEFT_REAR_ID,
@@ -33,15 +40,14 @@ public class RobotContainer {
             Constants.ENCODER_DRIVER_DISTANCE_PER_PULSE,
             Constants.DEADBAND_VALUE,
             Constants.ENCODER_DRIVER_INVERTED);
-
-    xboxController = new XboxController(Constants.XBOX_ID);
-
-    runDriver = new CommandDriver(driver);
-
-    configureButtonBindings();
   }
 
-  private void configureButtonBindings() {}
+  private void configureCommands() {
+    runDriver = new CommandDriver(driver);
+  }
+  private void configureJoysticks() {
+    xboxController = new XboxController(Constants.XBOX_ID);
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -64,14 +70,14 @@ public class RobotContainer {
     return xboxController;
   }
   
-  // Obtém o valor referente ao analógico direito do controle de XBOX
-  public static GenericHID.Hand rHand(){
-    return GenericHID.Hand.kRight;
+  // Obtém o valor referente ao eixo LY do controle de XBOX
+  public static double axis_LY(){
+    return xboxController.getY(GenericHID.Hand.kLeft);
   }
   
-    // Obtém o valor referente ao analógico esquerdo do controle de XBOX
-  public static GenericHID.Hand lHand(){
-    return GenericHID.Hand.kLeft;
+    // Obtém o valor referente ao eixo RX do controle de XBOX
+  public static double axis_RX(){
+    return xboxController.getX(GenericHID.Hand.kRight);
   }
   
   public static CommandDriver commDriver(){
