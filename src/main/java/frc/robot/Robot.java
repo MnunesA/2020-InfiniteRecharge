@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
   private SubsystemDriver subsystemDriver;
-  private Command commandDriver;
+  private CommandDriver commandDriver;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     this.subsystemDriver = RobotContainer.subsDriver();
     this.commandDriver = RobotContainer.commDriver();
+    // Seta o DefaultCommand para o SubsystemDriver
     CommandScheduler.getInstance().setDefaultCommand(this.subsystemDriver, this.commandDriver);
   }
 

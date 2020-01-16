@@ -16,8 +16,8 @@ import frc.robot.subsystems.SubsystemDriver;
 public class RobotContainer {
 
   private static SubsystemDriver driver;
-  private static XboxController joystick;
-  private static Command runDriver;
+  private static XboxController xboxController;
+  private static CommandDriver runDriver;
 
   public RobotContainer() {
 
@@ -30,9 +30,11 @@ public class RobotContainer {
             Constants.ENCODER_DRIVER_CHANNEL_B_ID,
             Constants.ENCODER_DRIVER_MAX_PERIOD,
             Constants.ENCODER_DRIVER_MIN_RATE,
-            Constants.ENCODER_DRIVER_DISTANCE_PER_PULSE);
+            Constants.ENCODER_DRIVER_DISTANCE_PER_PULSE,
+            Constants.DEADBAND_VALUE,
+            Constants.ENCODER_DRIVER_INVERTED);
 
-    joystick = new XboxController(Constants.XBOX_ID);
+    xboxController = new XboxController(Constants.XBOX_ID);
 
     runDriver = new CommandDriver(driver);
 
@@ -58,19 +60,21 @@ public class RobotContainer {
     return driver;
   }
   
-  public static XboxController joystick(){
-    return joystick;
+  public static XboxController xboxController(){
+    return xboxController;
   }
   
+  // Obtém o valor referente ao analógico direito do controle de XBOX
   public static GenericHID.Hand rHand(){
     return GenericHID.Hand.kRight;
   }
   
+    // Obtém o valor referente ao analógico esquerdo do controle de XBOX
   public static GenericHID.Hand lHand(){
     return GenericHID.Hand.kLeft;
   }
   
-  public static Command commDriver(){
+  public static CommandDriver commDriver(){
     return runDriver;
   }
 }

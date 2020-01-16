@@ -22,10 +22,15 @@ public class CommandDriver extends CommandBase {
     addRequirements(subsDriver);
   }
 
+  /* 
+    * Obtém os valores LY e RX dos analógicos do controle de XBOX
+    * e os implementa no método arcadeDrive do SubsystemDriver 
+    */
+ 
   @Override
   public void execute() {
-    this.linearSpeed = RobotContainer.joystick().getY(RobotContainer.lHand());
-    this.rotationSpeed = RobotContainer.joystick().getX(RobotContainer.rHand());
+    this.linearSpeed = RobotContainer.xboxController().getY(RobotContainer.lHand());
+    this.rotationSpeed = RobotContainer.xboxController().getX(RobotContainer.rHand());
     RobotContainer.subsDriver().arcadeDrive(this.linearSpeed, this.rotationSpeed);
   }
   

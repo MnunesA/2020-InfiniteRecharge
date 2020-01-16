@@ -41,19 +41,25 @@ public final class Constants {
 
     // GENERALS
     public static final double
-    DIAMETER_WHEEL = (2 * 3.1415 * (0.0254 * 6) / 2); //meters
-
+    // Circunferência da roda = 2 * π * Diâmetro / 2
+    CIRCUMFERENCE_WHEEL = (2 * 3.1415 * (0.0254 * 6) / 2), //meters
+    DEADBAND_VALUE = 0.04;
+    
     // ENCODER
     public static final int
     ENCODER_DRIVER_CHANNEL_A_ID = 3,
     ENCODER_DRIVER_CHANNEL_B_ID = 4;
 
     public static final double
-    ENCODER_DRIVER_MAX_PERIOD = 0.5,
-    ENCODER_DRIVER_MIN_RATE = 5,
-    ENCODER_DRIVER_RESOLUTION = 2048,
-    ENCODER_DRIVER_DISTANCE_PER_PULSE = ((DIAMETER_WHEEL/ENCODER_DRIVER_RESOLUTION)/1);
+    ENCODER_DRIVER_MAX_PERIOD = 0.5, // second
+    ENCODER_DRIVER_MIN_RATE = 0.05, // meters per second
+    ENCODER_DRIVER_RESOLUTION = 2048, // Pulses Per Rotation
+    ENCODER_DRIVER_DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL/ENCODER_DRIVER_RESOLUTION)/1); // meters
 
+    public static final boolean
+    // Inverter sentido de contagem do Encoder da tração
+    ENCODER_DRIVER_INVERTED = false;
+    
     // CONTROLLER
     public static final int
     XBOX_ID = 0;

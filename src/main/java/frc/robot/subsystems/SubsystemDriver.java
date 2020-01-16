@@ -28,6 +28,8 @@ public class SubsystemDriver extends SubsystemBase {
  private double MAX_PERIOD;
  private double MIN_RATE;
  private double DISTANCE_PER_PULSE;
+ private double DEADB_VALUE;
+ private boolean ENCODER_INV;
 
  private VictorSP motorLeftFront;
  private VictorSP motorLeftRear;
@@ -41,7 +43,7 @@ public class SubsystemDriver extends SubsystemBase {
  
  private Encoder encoder; 
 
-public SubsystemDriver(int LEFTF_ID, int LEFTR_ID, int RIGHTF_ID, int RIGHTR_ID, int CHAN_A_ID, int CHAN_B_ID, double ENCODER_MAX_PERIOD, double ENCODER_MIN_RATE, double ENCODER_DISTANCE_PER_PULSE) {
+public SubsystemDriver(int LEFTF_ID, int LEFTR_ID, int RIGHTF_ID, int RIGHTR_ID, int CHAN_A_ID, int CHAN_B_ID, double ENCODER_MAX_PERIOD, double ENCODER_MIN_RATE, double ENCODER_DISTANCE_PER_PULSE, double DEADBAND_VALUE, boolean ENCODER_INVERTED) {
   
   this.LF_ID = LEFTF_ID;
   this.LR_ID = LEFTR_ID;
@@ -52,6 +54,8 @@ public SubsystemDriver(int LEFTF_ID, int LEFTR_ID, int RIGHTF_ID, int RIGHTR_ID,
   this.MAX_PERIOD = ENCODER_MAX_PERIOD;
   this.MIN_RATE = ENCODER_MIN_RATE;
   this.DISTANCE_PER_PULSE = ENCODER_DISTANCE_PER_PULSE;
+  this.DEADB_VALUE = DEADBAND_VALUE;
+  this.ENCODER_INV = ENCODER_INVERTED;
   
   this.motorLeftFront = new VictorSP(LF_ID);
   this.motorLeftRear = new VictorSP(LR_ID);
@@ -62,9 +66,9 @@ public SubsystemDriver(int LEFTF_ID, int LEFTR_ID, int RIGHTF_ID, int RIGHTR_ID,
   this.motorRight = new SpeedControllerGroup(motorRightFront, motorRightRear);
   
   this.drivetrain = new DifferentialDrive(motorLeft, motorRight);
-  this.drivetrain.setDeadband(0.04);
+  this.drivetrain.setDeadband(DEADB_VALUE);
   
-  this.encoder = new Encoder(CHANNEL_A_ID, CHANNEL_B_ID, false, Encoder.EncodingType.k2X);
+  this.encoder = new Encoder(CHANNEL_A_ID, CHANNEL_B_ID, ENCODER_INV, Encoder.EncodingType.k2X);
   this.encoder.setMaxPeriod(MAX_PERIOD);
   this.encoder.setMinRate(MIN_RATE);                                                
   this.encoder.setDistancePerPulse(DISTANCE_PER_PULSE);
@@ -80,25 +84,25 @@ public int getPulsesEncoder(){
   return this.encoder.get();
  }
  
-public double getDistance() {
+public double getDistanceEncoder() {
   return this.encoder.getDistance();
  }
  
-public int getFPGAIndex() {
+public int getIndexEncoder() {
   return this.encoder.getFPGAIndex();
  }
 
-public void reset() {
+public void resetEncoder() {
   this.encoder.reset();
  }
  
  @Override
  public void periodic() {
-   SmartDashboard.putNumber("LY_Axis", this.axis_LY);
-   SmartDashboard.putNumber("LY_Axis", this.axis_RX);
-   SmartDashboard.putNumber("Pulses_Encoder", getPulsesEncoder());
-   SmartDashboard.putNumber("Distance Walked", getDistance());
-   SmartDashboard.putNumber("Index Value", getFPGAIndex());
+   SmartDashboard.putNumber("LY Axis", this.axis_LY);
+   SmartDashboard.putNumber("RX Axis", this.axis_RX);
+   SmartDashboard.putNumber("Pulses Encoder", getPulsesEncoder());
+   SmartDashboard.putNumber("Distance Walked", getDistanceEncoder());
+   SmartDashboard.putNumber("Index Value", getIndexEncoder());
  }
 
 }
