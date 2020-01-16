@@ -8,10 +8,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.PIDTest;
+import frc.robot.commands.ShooterMove;
+import frc.robot.commands.ShooterTest;
+import frc.robot.subsystems.Driver;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -20,11 +25,15 @@ import edu.wpi.first.wpilibj2.command.Command;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
+  private final double sp = 0;
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
+  private final Driver driver = new Driver();
+  private final Shooter shooter = new Shooter();
+  
+  private final PIDTest testPID = new PIDTest (driver);
+  private final ShooterMove withPID = new ShooterMove(shooter, sp);
+  private final ShooterTest withoutPID = new ShooterTest(shooter);
 
 
   /**
@@ -42,8 +51,17 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-  }
+    Joystick x_box = new Joystick(0);
+    Joystick manche = new Joystick(1);
 
+    JoystickButton d_a = new JoystickButton(x_box, 1);
+    JoystickButton d_b = new JoystickButton(x_box, 2);
+
+    d_a.whenPressed(new ShooterMove(shooter, 500));
+    d_b.whenPressed(new ShooterTest(shooter));
+
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -52,6 +70,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return testPID;
   }
 }
