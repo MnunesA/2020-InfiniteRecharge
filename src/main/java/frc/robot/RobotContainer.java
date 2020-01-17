@@ -7,9 +7,10 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.storage.CommandStorage;
+import frc.robot.commands.shooter_and_storage.CommandShooterAndStorage;
+import frc.robot.subsystems.SubsystemShooter;
 import frc.robot.subsystems.SubsystemStorage;
 
 /**
@@ -20,13 +21,13 @@ import frc.robot.subsystems.SubsystemStorage;
  */
 public class RobotContainer {
 
-  private static SubsystemStorage storage;
-  private static CommandStorage cstorage;
-  private static XboxController xboxController;
-  private static JoystickButton RB;
+  private static SubsystemStorage subsystemStorage;
+  private static SubsystemShooter subsystemShooter;
+  private static CommandShooterAndStorage commandShooterAndStorage;
+  private static Joystick joystick;
+  private static JoystickButton J_Fire;
 
   public RobotContainer() {
- 
     configureButtonBindings();
     configureSubsystems();
     configureCommands();
@@ -34,43 +35,47 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
-    RB = new JoystickButton(xboxController, Constants.RB);
-
-    RB().whileHeld(RobotContainer.commStorage());
+    J_Fire = new JoystickButton(joystick, Constants.J_FIRE_NUMBER);
+    J_Fire.whenPressed(commandShooterAndStorage);
   }
 
   private void configureSubsystems() {
-    storage = new SubsystemStorage(Constants.STORAGE_ID);
+    subsystemStorage = new SubsystemStorage(Constants.MOTOR_STORAGE_ID);
+    subsystemShooter = new SubsystemShooter(Constants.MOTOR_SHOOTER_ID, Constants.MOTOR_SHOOTERANGLE_ID);
   }
 
-  private void configureCommands() { 
-    cstorage = new CommandStorage(storage);
+  private void configureCommands() {
+    commandShooterAndStorage = new CommandShooterAndStorage(subsystemShooter, subsystemStorage,
+    Constants.MOTOR_STORAGE_SPEED_COMMANDSHOOTERANDSTORAGE, Constants.MOTOR_SHOOTER_SPEED_COMMANDSHOOTERANDSTORAGE);
   }
 
   private void configureJoysticks() {
-    xboxController = new XboxController(Constants.XBOX_ID);
+    joystick = new Joystick(Constants.JOYSTICK_ID);
   }
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  /*public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }*/
+  /*
+   * public Command getAutonomousCommand() { // An ExampleCommand will run in
+   * autonomous return m_autoCommand; }
+   */
 
-  public static SubsystemStorage subsStorage(){
-    return storage;
+  public static SubsystemStorage subsStorage() {
+    return subsystemStorage;
   }
 
-  public static CommandStorage commStorage(){
-    return cstorage;
+  public static SubsystemShooter subsShooter() {
+    return subsystemShooter;
   }
 
-  public static JoystickButton RB(){
-    return RB;
+  public static CommandShooterAndStorage commShooterAndStorage() {
+    return commandShooterAndStorage;
+  }
+
+  public static JoystickButton J_Fire() {
+    return J_Fire;
   }
 }

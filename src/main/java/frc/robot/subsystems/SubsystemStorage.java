@@ -13,28 +13,24 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SubsystemStorage extends SubsystemBase {
 
-  private double StorageSpeed;
-  
-  private int STORAGE_ID;
+  private double storageSpeed;
+  private int STOR_ID;
 
   private VictorSP motorStorage;
 
-  public SubsystemStorage(int STORAGEID) {
+  public SubsystemStorage(int STORAGE_ID) {
 
-    this.STORAGE_ID = STORAGEID;
-
-    this.motorStorage = new VictorSP(STORAGE_ID);
-
+    this.STOR_ID = STORAGE_ID;
+    this.motorStorage = new VictorSP(STOR_ID);
   }
 
   public void setSpeedStorage(double storageSpeed){
     this.motorStorage.set(storageSpeed);
-    this.StorageSpeed = storageSpeed;
+    this.storageSpeed = storageSpeed;
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Speed (Storage)", this.StorageSpeed);
-    SmartDashboard.putNumber("Port (Storage_ID)", this.STORAGE_ID);
+    SmartDashboard.putNumber("Storage Speed", this.storageSpeed);
   }
 }
