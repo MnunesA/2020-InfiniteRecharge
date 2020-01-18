@@ -19,20 +19,25 @@ public final class Constants {
 
     //PWM
     public static final int
-    SHOOTER_ID = 2;
-
+    SHOOTER_ID = 4;
+    
     //CAN
     public static final int
-    ANGLE_ID = 1;
-    
-    //Speed (OBS: Não será uma velocidade constante, coloquei aqui para ser mais fácil utilizar a variável)
+    ANGLE_ID = 2;
+        
+    //Speed (OBS: Não será uma velocidade constante, porem coloquei aqui para ser mais fácil utilizar a variável)
     public static final double
     SHOOTERSPEED = 0.5,
-    ANGLESPEED = 0.4;
-
-    //Joystick
+    ANGLE_SPEED_POSITIVE = 0.4,
+    ANGLE_SPEED_NEGATIVE = -0.4;
+    
+    //Joystick/Bottons
     public static final int
     JOYSTICK = 1,
+
     J_FIRE = 1,
-    J_THUMB = 2;
+    J_THUMB = 2,
+
+    //Botao para teste, pois no documento consta apenas um (J_Thumb) para subir e descer (?)
+    TEST = 3;
 }

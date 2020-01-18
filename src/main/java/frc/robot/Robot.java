@@ -14,7 +14,7 @@ import frc.robot.commands.shooter.CommandAngle;
 import frc.robot.commands.shooter.CommandShooter;
 import frc.robot.subsystems.SubsystemShooter;
 
-/**
+/
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
  * the package after creating this project, you must also update the build.gradle file in the
@@ -25,9 +25,10 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   private SubsystemShooter subsystemShooter;
   private CommandShooter commandShooter;
-  private CommandAngle commandAngle;
+  private CommandAngle commandAnglePositive;
+  private CommandAngle commandAngleNegative;
 
-  /**
+  /
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
@@ -38,10 +39,11 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     this.subsystemShooter = RobotContainer.subsShooter();
     this.commandShooter = RobotContainer.commShooter();
-    this.commandAngle = RobotContainer.commAngle();
+    this.commandAnglePositive = RobotContainer.commAnglePositive();
+    this.commandAngleNegative = RobotContainer.commAngleNegative();
   }
 
-  /**
+  /
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
    *
@@ -57,7 +59,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
   }
 
-  /**
+  /
    * This function is called once each time the robot enters Disabled mode.
    */
   @Override
@@ -68,7 +70,7 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
   }
 
-  /**
+  /
    * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
    */
   @Override
@@ -81,7 +83,7 @@ public class Robot extends TimedRobot {
     }
   }
 
-  /**
+  /
    * This function is called periodically during autonomous.
    */
   @Override
@@ -98,8 +100,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
   }
-
-  /**
+ /
    * This function is called periodically during operator control.
    */
   @Override
@@ -112,7 +113,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().cancelAll();
   }
 
-  /**
+  /
    * This function is called periodically during test mode.
    */
   @Override

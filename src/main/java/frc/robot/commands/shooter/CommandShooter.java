@@ -14,8 +14,8 @@ import frc.robot.subsystems.SubsystemShooter;
 
 public class CommandShooter extends CommandBase {
 
-private SubsystemShooter subsShooter;
-private double shooterSpeed;
+  private SubsystemShooter subsShooter;
+  private double shooterSpeed;
 
   public CommandShooter(SubsystemShooter subsystemS) {
     this.subsShooter = subsystemS;
