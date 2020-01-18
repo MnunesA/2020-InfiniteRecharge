@@ -79,6 +79,10 @@ public void arcadeDrive(double linearSpeed, double rotationSpeed) {
   this.axis_LY = linearSpeed;
   this.axis_RX = rotationSpeed;
  }
+  
+  public void setSpeedDrivetrain(double leftSpeed, double rightSpeed) {
+    this.drivetrain.tankDrive(leftSpeed, rightSpeed);
+ }
 
 public int getPulsesEncoder(){
   return this.encoder.get();

@@ -16,6 +16,11 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+  
+/* 
+Todas as variáveis no código cujo os nomes estão escritos com todas as letras maiúsculas e        com as palavras separadas por underline têm sua base de valor nesta classe.
+*/
+  
     // PWM
     public static final int
     MOTOR_LEFT_FRONT_ID = 0,
@@ -60,7 +65,11 @@ public final class Constants {
     // Inverter sentido de contagem do Encoder da tração
     ENCODER_DRIVER_INVERTED = false;
     
-    // CONTROLLER
+    // CONTROLLER XBOX
     public static final int
     XBOX_ID = 0;
+  
+    // CONTROLLER JOYSTICK
+    public static final int
+    JOYSTICK_ID = 1;
 }
