@@ -18,9 +18,9 @@ public class SubsystemStorage extends SubsystemBase {
 
   private VictorSP motorStorage;
 
-  public SubsystemStorage(int STORAGE_ID) {
+  public SubsystemStorage(int MOTOR_STORAGE_ID) {
 
-    this.STOR_ID = STORAGE_ID;
+    this.STOR_ID = MOTOR_STORAGE_ID;
     this.motorStorage = new VictorSP(STOR_ID);
   }
 

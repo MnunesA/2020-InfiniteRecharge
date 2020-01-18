@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.commands.shooter_and_storage.CommandShooterAndStorage;
 import frc.robot.subsystems.SubsystemShooter;
 import frc.robot.subsystems.SubsystemStorage;
@@ -46,7 +47,7 @@ public class RobotContainer {
 
   private void configureCommands() {
     commandShooterAndStorage = new CommandShooterAndStorage(subsystemShooter, subsystemStorage,
-    Constants.MOTOR_STORAGE_SPEED_COMMANDSHOOTERANDSTORAGE, Constants.MOTOR_SHOOTER_SPEED_COMMANDSHOOTERANDSTORAGE);
+    Constants.MOTOR_STORAGE_SPEED_COMMANDSHOOTERANDSTORAGE, Constants.MOTOR_SHOOTER_SPEED_COMMANDSHOOTERANDSTORAGE, Constants.TIMER_COMMANDSHOOTERANDSTORAGE);
   }
 
   private void configureJoysticks() {

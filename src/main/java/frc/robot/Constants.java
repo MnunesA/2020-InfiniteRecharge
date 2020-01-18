@@ -17,6 +17,10 @@ package frc.robot;
  */
 public final class Constants {
 
+/* 
+Todos as variáveis no código cujo o nome está escrito com todas as letras maiúsculas e        com as palavras separadas por underline têm sua base de valor nesta classe.
+*/
+  
     // PWM
     public static final int
     MOTOR_SHOOTER_ID = 4,
@@ -49,16 +53,6 @@ public final class Constants {
     public static final int
     ENCODER_DRIVER_CHANNEL_A_ID = 3,
     ENCODER_DRIVER_CHANNEL_B_ID = 4;
-
-    public static final double
-    ENCODER_DRIVER_MAX_PERIOD = 0.5, // second
-    ENCODER_DRIVER_MIN_RATE = 0.05, // meters per second
-    ENCODER_DRIVER_RESOLUTION = 2048, // Pulses Per Rotation
-    ENCODER_DRIVER_DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL/ENCODER_DRIVER_RESOLUTION)/1); // meters
-
-    public static final boolean
-    // Inverter sentido de contagem do Encoder da tração
-    ENCODER_DRIVER_INVERTED = false;
     
     // CONTROLLER XBOX
     public static final int
@@ -69,9 +63,12 @@ public final class Constants {
     JOYSTICK_ID = 1,
     J_FIRE_NUMBER = 1;
  
-    // Speeds
+    // SPEEDS
     public static final double
     MOTOR_SHOOTER_SPEED_COMMANDSHOOTERANDSTORAGE = 0.5,
-    MOTOR_SHOOTERANGLE_SPEED_COMMANDSHOOTERANDSTORAGE = 0.5,
     MOTOR_STORAGE_SPEED_COMMANDSHOOTERANDSTORAGE = 0.5;
+    
+    // TIMERS
+    public static final double
+    TIMER_COMMANDSHOOTERANDSTORAGE = 3.0;
 }

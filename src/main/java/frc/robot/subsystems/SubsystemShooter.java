@@ -16,41 +16,38 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class SubsystemShooter extends SubsystemBase {
 
-  //velocidade dos motores
-  private double ShooterSpeed;
-  private double AngleSpeed;
-
-  private int Shooter_ID;
-  private int Angle_ID;
+  private double shooterSpeed;
+  private double angleSpeed;
+  private int SHOOTER_ID;
+  private int ANGLE_ID;
 
   private VictorSP motorShooter;
 
   private TalonSRX motorAngle;
 
-  public SubsystemShooter(int ShooterID, int AngleID) {
+  public SubsystemShooter(int MOTOR_SHOOTER_ID, int MOTOR_ANGLE_ID) {
 
-    this.Shooter_ID = ShooterID;
-    this.Angle_ID = AngleID;
+    this.SHOOTER_ID = MOTOR_SHOOTER_ID;
+    this.ANGLE_ID = MOTOR_ANGLE_ID;
 
-    this.motorShooter = new VictorSP(Shooter_ID);
+    this.motorShooter = new VictorSP(SHOOTER_ID);
 
-    this.motorAngle = new TalonSRX(Angle_ID);
-
+    this.motorAngle = new TalonSRX(ANGLE_ID);
   }
 
   public void setSpeedShooter(double shooterSpeed){
     this.motorShooter.set(shooterSpeed);
-    this.ShooterSpeed = shooterSpeed;
+    this.shooterSpeed = shooterSpeed;
   }
 
   public void setSpeedAngle(double angleSpeed){
     this.motorAngle.set(ControlMode.PercentOutput, angleSpeed);
-    this.AngleSpeed = angleSpeed;
+    this.angleSpeed = angleSpeed;
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Speed (Shooter)", this.ShooterSpeed);
-    SmartDashboard.putNumber("Speed (Angle)", this.AngleSpeed);
+    SmartDashboard.putNumber("Shooter Speed", this.shooterSpeed);
+    SmartDashboard.putNumber("Angle Speed", this.angleShooter);
   }
 }

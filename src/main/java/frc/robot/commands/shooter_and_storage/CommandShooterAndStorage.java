@@ -17,40 +17,44 @@ public class CommandShooterAndStorage extends CommandBase {
 
 private SubsystemShooter subsShooter;
 private SubsystemStorage subsStorage;
-private double shooterSpeed;
-private double storageSpeed;
+private double SHOOTER_SPEED;
+private double STORAGE_SPEED;
 private Timer timer;
+private double TIMER_DURATION;
 
-  public CommandShooterAndStorage(SubsystemShooter subsystemShooter, SubsystemStorage subsystemStorage, double speedStorage, double speedShooter) {
+  public CommandShooterAndStorage(SubsystemShooter subsystemShooter, SubsystemStorage subsystemStorage, double STORAGE_SPEED, double SHOOTER_SPEED, double TIMER) {
     this.subsShooter = subsystemShooter;
     this.subsStorage = subsystemStorage;
-    this.shooterSpeed = shooterSpeed;
-    this.storageSpeed = storageSpeed;
+    this.SHOOTER_SPEED = SHOOTER_SPEED;
+    this.STORAGE_SPEED = STORAGE_SPEED;
+    this.TIMER_DURATION = TIMER;
+    this.timer = new Timer();
     addRequirements(subsShooter, subsStorage);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    this.timer = new Timer();
+    this.timer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.subsShooter().setSpeedShooter(this.shooterSpeed);
-    RobotContainer.subsStorage().setSpeedStorage(this.storageSpeed);
+    this.subsShooter.setSpeedShooter(this.SHOOTER_SPEED);
+    this.subsStorage.setSpeedStorage(this.STORAGE_SPEED);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     this.timer.stop();
+    this.timer.reset();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return this.timer.get() > 2.5;
+    return this.timer.get() >= TIMER_DURATION;
   }
 }
