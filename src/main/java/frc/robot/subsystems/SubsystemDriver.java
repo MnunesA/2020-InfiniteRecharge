@@ -73,6 +73,9 @@ double DEADBAND_VALUE, boolean ENCODER_LEFT_INVERTED, boolean ENCODER_RIGHT_INVE
   
   this.motorLeft = new SpeedControllerGroup(motorLeftFront, motorLeftRear);
   this.motorRight = new SpeedControllerGroup(motorRightFront, motorRightRear);
+
+  this.motorLeft.setInverted(true);
+  this.motorRight.setInverted(true);
   
   this.drivetrain = new DifferentialDrive(motorLeft, motorRight);
   this.drivetrain.setDeadband(DEADB_VALUE);
@@ -81,10 +84,9 @@ double DEADBAND_VALUE, boolean ENCODER_LEFT_INVERTED, boolean ENCODER_RIGHT_INVE
   this.encoderLeft.setMaxPeriod(MAX_PERIOD);
   this.encoderLeft.setMinRate(MIN_RATE);                                                
   this.encoderLeft.setDistancePerPulse(DISTANCE_PER_PULSE);
-
   this.encoderRight = new Encoder(CHAN_RIGHT_A_ID, CHAN_RIGHT_B_ID, ENCODER_RIGHT_INV, Encoder.EncodingType.k2X);
   this.encoderRight.setMaxPeriod(MAX_PERIOD);
-  this.encoderRight.setMinRate(MIN_RATE);                                                
+  this.encoderRight.setMinRate(MIN_RATE);
   this.encoderRight.setDistancePerPulse(DISTANCE_PER_PULSE);
  }
 
