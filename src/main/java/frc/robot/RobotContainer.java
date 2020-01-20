@@ -29,17 +29,20 @@ public class RobotContainer {
 
   private void configureSubsystems() {
     driver = new SubsystemDriver(
-            Constants.MOTOR_LEFT_FRONT_ID,
-            Constants.MOTOR_LEFT_REAR_ID,
-            Constants.MOTOR_RIGHT_FRONT_ID,
-            Constants.MOTOR_RIGHT_REAR_ID,
-            Constants.ENCODER_DRIVER_CHANNEL_A_ID,
-            Constants.ENCODER_DRIVER_CHANNEL_B_ID,
-            Constants.ENCODER_DRIVER_MAX_PERIOD,
-            Constants.ENCODER_DRIVER_MIN_RATE,
-            Constants.ENCODER_DRIVER_DISTANCE_PER_PULSE,
+            ConstantsDriver.MOTOR_LEFT_FRONT_ID,
+            ConstantsDriver.MOTOR_LEFT_REAR_ID,
+            ConstantsDriver.MOTOR_RIGHT_FRONT_ID,
+            ConstantsDriver.MOTOR_RIGHT_REAR_ID,
+            ConstantsDriver.ENCODER_LEFT_CHANNEL_A_ID,
+            ConstantsDriver.ENCODER_LEFT_CHANNEL_B_ID,
+            ConstantsDriver.ENCODER_RIGHT_CHANNEL_A_ID,
+            ConstantsDriver.ENCODER_RIGHT_CHANNEL_B_ID,
+            ConstantsDriver.ENCODERS_MAX_PERIOD,
+            ConstantsDriver.ENCODERS_MIN_RATE,
+            ConstantsDriver.ENCODERS_DISTANCE_PER_PULSE,
             Constants.DEADBAND_VALUE,
-            Constants.ENCODER_DRIVER_INVERTED);
+            ConstantsDriver.ENCODER_LEFT_INVERTED,
+            ConstantsDriver.ENCODER_RIGHT_INVERTED);
   }
 
   private void configureCommands() {
