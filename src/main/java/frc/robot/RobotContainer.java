@@ -9,8 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import frc.robot.commands.shooter_and_storage.CommandShooterAndStorage;
+import frc.robot.ConstantsShooterEStorage;
+import frc.robot.commands.shooter_and_storage.CommandShooterEStorage;
 import frc.robot.subsystems.SubsystemShooter;
 import frc.robot.subsystems.SubsystemStorage;
 
@@ -24,9 +24,9 @@ public class RobotContainer {
 
   private static SubsystemStorage subsystemStorage;
   private static SubsystemShooter subsystemShooter;
-  private static CommandShooterAndStorage commandShooterAndStorage;
+  private static CommandShooterEStorage commandShooterEStorage;
   private static Joystick joystick;
-  private static JoystickButton J_Fire;
+  private static JoystickButton j_Fire;
 
   public RobotContainer() {
     configureButtonBindings();
@@ -36,18 +36,18 @@ public class RobotContainer {
   }
 
   private void configureButtonBindings() {
-    J_Fire = new JoystickButton(joystick, Constants.J_FIRE_NUMBER);
-    J_Fire.whenPressed(commandShooterAndStorage);
+    j_Fire = new JoystickButton(joystick, Constants.J_FIRE_NUMBER);
+    j_Fire.whenPressed(commandShooterEStorage);
   }
 
   private void configureSubsystems() {
-    subsystemStorage = new SubsystemStorage(Constants.MOTOR_STORAGE_ID);
-    subsystemShooter = new SubsystemShooter(Constants.MOTOR_SHOOTER_ID, Constants.MOTOR_SHOOTERANGLE_ID);
+    subsystemStorage = new SubsystemStorage(ConstantsStorage.MOTOR_STORAGE_ID);
+    subsystemShooter = new SubsystemShooter(ConstantsShooter.MOTOR_SHOOTER_ID, ConstantsShooter.MOTOR_SHOOTERANGLE_ID);
   }
 
   private void configureCommands() {
-    commandShooterAndStorage = new CommandShooterAndStorage(subsystemShooter, subsystemStorage,
-    Constants.MOTOR_STORAGE_SPEED_COMMANDSHOOTERANDSTORAGE, Constants.MOTOR_SHOOTER_SPEED_COMMANDSHOOTERANDSTORAGE, Constants.TIMER_COMMANDSHOOTERANDSTORAGE);
+    commandShooterEStorage = new CommandShooterEStorage(subsystemShooter, subsystemStorage,
+    ConstantsShooterEStorage.STORAGE_SPEED_COMMANDSHOOTERESTORAGE, ConstantsShooterEStorage.SHOOTER_SPEED_COMMANDSHOOTERESTORAGE, ConstantsShooterEStorage.TIMER_COMMANDSHOOTERESTORAGE);
   }
 
   private void configureJoysticks() {
@@ -72,11 +72,11 @@ public class RobotContainer {
     return subsystemShooter;
   }
 
-  public static CommandShooterAndStorage commShooterAndStorage() {
-    return commandShooterAndStorage;
+  public static CommandShooterEStorage commShooterAndStorage() {
+    return commandShooterEStorage;
   }
 
-  public static JoystickButton J_Fire() {
-    return J_Fire;
+  public static JoystickButton j_Fire() {
+    return j_Fire;
   }
 }

@@ -8,26 +8,25 @@
 package frc.robot;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
+ * The ConstantsShooterEStorage class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
  * declared globally (i.e. public static).  Do not put anything functional in this class.
  *
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class ConstantsShooterEStorage{
 
 /* 
 Todos as variáveis no código cujo o nome está escrito com todas as letras maiúsculas e        com as palavras separadas por underline têm sua base de valor nesta classe.
 */
 
-    // GENERALS
+    // SPEEDS
     public static final double
-    // Circunferência da roda = 2 * π * Diâmetro / 2
-    CIRCUMFERENCE_WHEEL = (2 * 3.1415 * (0.0254 * 6) / 2), //meters
-    DEADBAND_VALUE = 0.04;
-    // CONTROLLER JOYSTICK
-    public static final int
-    JOYSTICK_ID = 1,
-    J_FIRE_NUMBER = 1;
+    SHOOTER_SPEED_COMMANDSHOOTERESTORAGE = 0.5,
+    STORAGE_SPEED_COMMANDSHOOTERESTORAGE = 0.5;
+    
+    // TIMERS
+    public static final double
+    TIMER_COMMANDSHOOTERESTORAGE = 3.0;
 }

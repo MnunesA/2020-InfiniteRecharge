@@ -48,6 +48,6 @@ public class SubsystemShooter extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Shooter Speed", this.shooterSpeed);
-    SmartDashboard.putNumber("Angle Speed", this.angleShooter);
+    SmartDashboard.putNumber("Angle Speed", this.angleSpeed);
   }
 }

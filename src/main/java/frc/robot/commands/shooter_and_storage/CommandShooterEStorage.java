@@ -9,11 +9,10 @@ package frc.robot.commands.shooter_and_storage;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.SubsystemShooter;
 import frc.robot.subsystems.SubsystemStorage;
 
-public class CommandShooterAndStorage extends CommandBase {
+public class CommandShooterEStorage extends CommandBase {
 
 private SubsystemShooter subsShooter;
 private SubsystemStorage subsStorage;
@@ -22,7 +21,7 @@ private double STORAGE_SPEED;
 private Timer timer;
 private double TIMER_DURATION;
 
-  public CommandShooterAndStorage(SubsystemShooter subsystemShooter, SubsystemStorage subsystemStorage, double STORAGE_SPEED, double SHOOTER_SPEED, double TIMER) {
+  public CommandShooterEStorage(SubsystemShooter subsystemShooter, SubsystemStorage subsystemStorage, double STORAGE_SPEED, double SHOOTER_SPEED, double TIMER) {
     this.subsShooter = subsystemShooter;
     this.subsStorage = subsystemStorage;
     this.SHOOTER_SPEED = SHOOTER_SPEED;
