@@ -93,6 +93,14 @@ public void arcadeDrive(double linearSpeed, double rotationSpeed) {
   this.axis_LY = linearSpeed;
   this.axis_RX = rotationSpeed;
  }
+  
+public void setLinearSpeedDrivetrain(double linearSpeed) {
+    this.drivetrain.arcadeDrive(linearSpeed, 0);
+ }
+
+public void setRotationSpeedDrivetrain(double rotationSpeed) {
+  this.drivetrain.arcadeDrive(0, rotationSpeed);
+}
 
 public int getPulsesEncoderLeft(){
   return this.encoderLeft.get();

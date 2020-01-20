@@ -31,7 +31,7 @@ public class CommandDriver extends CommandBase {
   public void execute() {
     this.linearSpeed = RobotContainer.axis_LY();
     this.rotationSpeed = RobotContainer.axis_RX();
-    RobotContainer.subsDriver().arcadeDrive(this.linearSpeed, this.rotationSpeed);
+    this.subsDriver.arcadeDrive(this.linearSpeed, this.rotationSpeed);
   }
   
   @Override
