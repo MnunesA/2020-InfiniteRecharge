@@ -7,7 +7,6 @@
 
 package frc.robot.commands.shooter_and_storage;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.SubsystemShooter;
 import frc.robot.subsystems.SubsystemStorage;
@@ -18,24 +17,20 @@ private SubsystemShooter subsShooter;
 private SubsystemStorage subsStorage;
 private double SHOOTER_SPEED;
 private double STORAGE_SPEED;
-private Timer timer;
-private double TIMER_DURATION;
 
-  public CommandShooterEStorage(SubsystemShooter subsystemShooter, SubsystemStorage subsystemStorage, double STORAGE_SPEED, double SHOOTER_SPEED, double TIMER) {
+  public CommandShooterEStorage(SubsystemShooter subsystemShooter, SubsystemStorage subsystemStorage,
+  double STORAGE_SPEED, double SHOOTER_SPEED) {
     this.subsShooter = subsystemShooter;
     this.subsStorage = subsystemStorage;
     this.SHOOTER_SPEED = SHOOTER_SPEED;
     this.STORAGE_SPEED = STORAGE_SPEED;
-    this.TIMER_DURATION = TIMER;
-    this.timer = new Timer();
     addRequirements(subsShooter, subsStorage);
   }
 
   // Called when the command is initially scheduled.
+  
   @Override
-  public void initialize() {
-    this.timer.start();
-  }
+  public void initialize() {  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -47,13 +42,13 @@ private double TIMER_DURATION;
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    this.timer.stop();
-    this.timer.reset();
+    this.subsShooter.setSpeedShooter(0.0);
+    this.subsStorage.setSpeedStorage(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return this.timer.get() >= TIMER_DURATION;
+    return false;
   }
 }

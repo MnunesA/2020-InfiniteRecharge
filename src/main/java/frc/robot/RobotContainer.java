@@ -29,15 +29,15 @@ public class RobotContainer {
   private static JoystickButton j_Fire;
 
   public RobotContainer() {
-    configureButtonBindings();
     configureSubsystems();
     configureCommands();
     configureJoysticks();
+    configureButtonBindings();
   }
 
   private void configureButtonBindings() {
     j_Fire = new JoystickButton(joystick, Constants.J_FIRE_NUMBER);
-    j_Fire.whenPressed(commandShooterEStorage);
+    j_Fire.whileHeld(commandShooterEStorage);
   }
 
   private void configureSubsystems() {
@@ -47,7 +47,8 @@ public class RobotContainer {
 
   private void configureCommands() {
     commandShooterEStorage = new CommandShooterEStorage(subsystemShooter, subsystemStorage,
-    ConstantsShooterEStorage.STORAGE_SPEED_COMMANDSHOOTERESTORAGE, ConstantsShooterEStorage.SHOOTER_SPEED_COMMANDSHOOTERESTORAGE, ConstantsShooterEStorage.TIMER_COMMANDSHOOTERESTORAGE);
+    ConstantsShooterEStorage.STORAGE_SPEED_COMMANDSHOOTERESTORAGE, 
+    ConstantsShooterEStorage.SHOOTER_SPEED_COMMANDSHOOTERESTORAGE);
   }
 
   private void configureJoysticks() {
