@@ -20,10 +20,10 @@ public final class ConstantsDriver {
 
     // PWM
     public static final int
-    MOTOR_RIGHT_FRONT_ID = 0,
-    MOTOR_RIGHT_REAR_ID = 1,
-    MOTOR_LEFT_FRONT_ID = 2,
-    MOTOR_LEFT_REAR_ID = 3;
+    MOTOR_LEFT_FRONT_ID = 0,
+    MOTOR_LEFT_REAR_ID = 1,
+    MOTOR_RIGHT_FRONT_ID = 2,
+    MOTOR_RIGHT_REAR_ID = 3;
 
     // DIO
     public static final int
