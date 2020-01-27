@@ -8,6 +8,7 @@
 package frc.robot;
 
 import static frc.robot.Constants.CIRCUMFERENCE_WHEEL;
+
 /**
  * The ConstantsDriver class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
@@ -37,7 +38,7 @@ public final class ConstantsDriver {
     ENCODERS_MAX_PERIOD = 0.5, // second
     ENCODERS_MIN_RATE = 0.05, // meters per second
     ENCODERS_RESOLUTION = 2048, // Pulses Per Rotation
-    ENCODERS_DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL/ENCODERS_RESOLUTION)/1); // meters
+    ENCODERS_DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL/ENCODERS_RESOLUTION)/2)/1; // meters
 
     public static final boolean
     // Inverter sentido de contagem do Encoder da tração
