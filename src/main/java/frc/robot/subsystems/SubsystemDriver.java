@@ -73,7 +73,7 @@ double DEADBAND_VALUE, boolean ENCODER_LEFT_INVERTED, boolean ENCODER_RIGHT_INVE
   
   this.motorLeft = new SpeedControllerGroup(motorLeftFront, motorLeftRear);
   this.motorRight = new SpeedControllerGroup(motorRightFront, motorRightRear);
-  
+
   this.drivetrain = new DifferentialDrive(motorLeft, motorRight);
   this.drivetrain.setDeadband(DEADB_VALUE);
   

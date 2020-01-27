@@ -44,4 +44,9 @@ public final class ConstantsDriver {
     // Inverter sentido de contagem do Encoder da tração
     ENCODER_LEFT_INVERTED = false,
     ENCODER_RIGHT_INVERTED = false;
+
+    // SPEED LIMITER
+    public static final double 
+    LIMITER_LINEAR = -0.7,
+    LIMITER_ROTATION = 0.6;
 }

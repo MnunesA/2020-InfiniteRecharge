@@ -75,12 +75,12 @@ public class RobotContainer {
   
   // Obtém o valor referente ao eixo LY do controle de XBOX
   public static double axis_LY(){
-    return xboxController.getRawAxis(2);
+    return ConstantsDriver.LIMITER_LINEAR * xboxController.getRawAxis(1);
   }
   
     // Obtém o valor referente ao eixo RX do controle de XBOX invertido
   public static double axis_RX(){
-    return xboxController.getRawAxis(1) * -1;
+    return ConstantsDriver.LIMITER_ROTATION * xboxController.getRawAxis(4);
   }
   
   public static CommandDriver commDriver(){
