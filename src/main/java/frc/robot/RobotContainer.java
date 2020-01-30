@@ -8,48 +8,42 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.driver.CommandDriver;
-import frc.robot.subsystems.SubsystemDriver;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.intake.CommandToTake;
+import frc.robot.subsystems.SubsystemIntake;
 
 public class RobotContainer {
 
-  private static SubsystemDriver driver;
+  private static SubsystemIntake intake;
   private static XboxController xboxController;
-  private static CommandDriver runDriver;
+  private static CommandToTake commandToTake;
+  private static Joystick joystick;
+  private static JoystickButton j_Three;
 
   public RobotContainer() {
-    configureButtonBindings();
     configureSubsystems();
     configureCommands();
     configureJoysticks();
+    configureButtonBindings();
   }
 
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    j_Three = new JoystickButton(joystick, Constants.J_THREE_NUMBER);
+  }
 
   private void configureSubsystems() {
-    driver = new SubsystemDriver(
-            ConstantsDriver.MOTOR_LEFT_FRONT_ID,
-            ConstantsDriver.MOTOR_LEFT_REAR_ID,
-            ConstantsDriver.MOTOR_RIGHT_FRONT_ID,
-            ConstantsDriver.MOTOR_RIGHT_REAR_ID,
-            ConstantsDriver.ENCODER_LEFT_CHANNEL_A_ID,
-            ConstantsDriver.ENCODER_LEFT_CHANNEL_B_ID,
-            ConstantsDriver.ENCODER_RIGHT_CHANNEL_A_ID,
-            ConstantsDriver.ENCODER_RIGHT_CHANNEL_B_ID,
-            ConstantsDriver.ENCODERS_MAX_PERIOD,
-            ConstantsDriver.ENCODERS_MIN_RATE,
-            ConstantsDriver.ENCODERS_DISTANCE_PER_PULSE,
-            Constants.DEADBAND_VALUE,
-            ConstantsDriver.ENCODER_LEFT_INVERTED,
-            ConstantsDriver.ENCODER_RIGHT_INVERTED);
+    intake = new SubsystemIntake(ConstantsIntake.MOTOR_ANGULATION_ID, ConstantsIntake.MOTOR_TO_TAKE_ID,
+    ConstantsIntake.LIMITSWITCH_UP_ID, ConstantsIntake.LIMITSWITCH_DOWN_ID);
   }
 
   private void configureCommands() {
-    runDriver = new CommandDriver(driver);
+    commandToTake = new CommandToTake(intake);
   }
   private void configureJoysticks() {
     xboxController = new XboxController(Constants.XBOX_ID);
+    joystick = new Joystick(Constants.JOYSTICK_ID);
   }
 
   /**
@@ -65,8 +59,8 @@ public class RobotContainer {
     }
   */
   
-  public static SubsystemDriver subsDriver() {
-    return driver;
+  public static SubsystemIntake subsIntake() {
+    return intake;
   }
   
   public static XboxController xboxController(){
@@ -74,16 +68,16 @@ public class RobotContainer {
   }
   
   // Obtém o valor referente ao eixo LY do controle de XBOX
-  public static double axis_LY(){
-    return ConstantsDriver.LIMITER_LINEAR * xboxController.getRawAxis(1);
+  public static double axis_RT(){
+    return xboxController.getTriggerAxis(GenericHID.Hand.kRight);
   }
   
     // Obtém o valor referente ao eixo RX do controle de XBOX invertido
-  public static double axis_RX(){
-    return ConstantsDriver.LIMITER_ROTATION * xboxController.getRawAxis(4);
+  public static double axis_LT(){
+    return xboxController.getTriggerAxis(GenericHID.Hand.kLeft);
   }
   
-  public static CommandDriver commDriver(){
-    return runDriver;
+  public static CommandToTake commandToTake(){
+    return commandToTake;
   }
 }

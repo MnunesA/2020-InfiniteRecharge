@@ -8,30 +8,27 @@
 package frc.robot;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
+ * The ConstantsIntake class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
  * declared globally (i.e. public static).  Do not put anything functional in this class.
  *
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class ConstantsIntake {
 
-/* 
-Todas as variáveis no código cujo os nomes estão escritos com todas as letras maiúsculas e com as 
-palavras separadas por underline têm sua base de valor nas classes "constants".
-*/
-
-    // GENERALS
-    public static final double
-    // Circunferência da roda = 2 * π * Diâmetro / 2
-    CIRCUMFERENCE_WHEEL = (2 * 3.1415 * (0.0254 * 6) / 2), //meters
-    DEADBAND_VALUE = 0.04;
-   
-    // CONTROLLERS
+    // PWM
     public static final int
-    XBOX_ID = 0,
-    JOYSTICK_ID = 1,
-    J_THREE_NUMBER = 3;
-}
+    MOTOR_ANGULATION_ID = 7,
+    MOTOR_TO_TAKE_ID = 8;
 
+    // DIO
+    public static final int
+    LIMITSWITCH_UP_ID = 7,
+    LIMITSWITCH_DOWN_ID = 8;
+
+    // SPEED LIMITER
+    public static final double 
+    LIMITER_SPEED_IN = 0.7,
+    LIMITER_SPEED_OUT = 0.6;
+}

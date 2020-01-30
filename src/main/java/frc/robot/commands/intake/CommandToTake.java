@@ -5,21 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.driver;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.SubsystemDriver;
+import frc.robot.subsystems.SubsystemIntake;
 
-public class CommandDriver extends CommandBase {
+public class CommandToTake extends CommandBase {
 
-  private SubsystemDriver subsDriver;
-  private double linearSpeed;
-  private double rotationSpeed;
+  private SubsystemIntake subsIntake;
 
-  public CommandDriver(SubsystemDriver subsystemD) {
-    this.subsDriver = subsystemD;
-    addRequirements(subsDriver);
+  public CommandToTake(SubsystemIntake subsystemIntake) {
+    this.subsIntake = subsystemIntake;
+    addRequirements(subsIntake);
   }
 
   /* 
@@ -29,9 +27,6 @@ public class CommandDriver extends CommandBase {
  
   @Override
   public void execute() {
-    this.linearSpeed = RobotContainer.axis_LY();
-    this.rotationSpeed = RobotContainer.axis_RX();
-    this.subsDriver.arcadeDrive(this.linearSpeed, this.rotationSpeed);
   }
   
   @Override
