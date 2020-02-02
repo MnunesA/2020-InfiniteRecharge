@@ -17,11 +17,6 @@ package frc.robot;
  */
 public final class Constants {
 
-/* 
-Todas as variáveis no código cujo os nomes estão escritos com todas as letras maiúsculas e com as 
-palavras separadas por underline têm sua base de valor nas classes "constants".
-*/
-
     // GENERALS
     public static final double
     // Circunferência da roda = 2 * π * Diâmetro / 2
@@ -33,5 +28,5 @@ palavras separadas por underline têm sua base de valor nas classes "constants".
     XBOX_ID = 0,
     JOYSTICK_ID = 1,
     J_THREE_NUMBER = 3;
-}
 
+}

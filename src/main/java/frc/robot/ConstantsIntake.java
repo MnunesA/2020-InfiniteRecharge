@@ -29,6 +29,11 @@ public final class ConstantsIntake {
 
     // SPEED LIMITER
     public static final double 
-    LIMITER_SPEED_IN = 0.7,
-    LIMITER_SPEED_OUT = 0.6;
+    LIMITER_SPEED = 0.7;
+
+    // SPEED
+    public static final double 
+    SPEED_ANGULATION_UP = -0.5,
+    SPEED_ANGULATION_DOWN = 0.5;
+
 }

@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.ConstantsIntake;
 
 
 public class SubsystemIntake extends SubsystemBase {
@@ -54,7 +53,7 @@ int LIMITSWITCH_DOWN_ID) {
     return limitSwitchUp.get();
   }
 
-  public boolean getLSDown() {
+  public Boolean getLSDown() {
     return limitSwitchDown.get();
   }
 

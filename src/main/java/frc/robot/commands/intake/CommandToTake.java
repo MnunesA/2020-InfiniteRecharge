@@ -13,20 +13,21 @@ import frc.robot.subsystems.SubsystemIntake;
 
 public class CommandToTake extends CommandBase {
 
+  private double speed;
+  private double LIM_SPEED;
+
   private SubsystemIntake subsIntake;
 
-  public CommandToTake(SubsystemIntake subsystemIntake) {
+  public CommandToTake(SubsystemIntake subsystemIntake, double LIMITER_SPEED) {
     this.subsIntake = subsystemIntake;
+    this.LIM_SPEED = LIMITER_SPEED;
     addRequirements(subsIntake);
   }
 
-  /* 
-    * Obtém os valores LY e RX dos analógicos do controle de XBOX
-    * e os implementa no método arcadeDrive do SubsystemDriver 
-    */
- 
   @Override
   public void execute() {
+    speed = RobotContainer.axis_cancel() * LIM_SPEED;
+    subsIntake.setSpeedToTake(speed);
   }
   
   @Override
