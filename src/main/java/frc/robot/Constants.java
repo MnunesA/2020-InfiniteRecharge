@@ -25,7 +25,6 @@ public final class Constants {
    
     // CONTROLLERS
     public static final int
-    XBOX_ID = 0,
     JOYSTICK_ID = 1,
     J_THREE_NUMBER = 3;
 

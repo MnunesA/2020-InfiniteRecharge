@@ -27,10 +27,6 @@ public final class ConstantsIntake {
     LIMITSWITCH_UP_ID = 7,
     LIMITSWITCH_DOWN_ID = 8;
 
-    // SPEED LIMITER
-    public static final double 
-    LIMITER_SPEED = 0.7;
-
     // SPEED
     public static final double 
     SPEED_ANGULATION_UP = -0.5,

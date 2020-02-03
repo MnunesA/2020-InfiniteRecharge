@@ -14,14 +14,11 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.intake.CommandAngulationDown;
 import frc.robot.commands.intake.CommandAngulationUp;
-import frc.robot.commands.intake.CommandToTake;
 import frc.robot.subsystems.SubsystemIntake;
 
 public class RobotContainer {
 
   private static SubsystemIntake intake;
-  private static XboxController xboxController;
-  private static CommandToTake commandToTake;
   private static CommandAngulationUp commandAngulationUp;
   private static CommandAngulationDown commandAngulationDown;
   private static Joystick joystick;
@@ -46,13 +43,11 @@ public class RobotContainer {
   }
 
   private void configureCommands() {
-    commandToTake = new CommandToTake(intake, ConstantsIntake.LIMITER_SPEED);
     commandAngulationUp = new CommandAngulationUp(intake, ConstantsIntake.SPEED_ANGULATION_UP);
     commandAngulationDown = new CommandAngulationDown (intake, ConstantsIntake.SPEED_ANGULATION_DOWN);
   }
 
   private void configureJoysticks() {
-    xboxController = new XboxController(Constants.XBOX_ID);
     joystick = new Joystick(Constants.JOYSTICK_ID);
 
   }
@@ -70,22 +65,6 @@ public class RobotContainer {
 
   public static SubsystemIntake subsIntake() {
     return intake;
-  }
-
-  public static XboxController xboxController() {
-    return xboxController;
-  }
-
-  // obtém a soma dos dois eixos
-  public static double axis_cancel() {
-    double axis_LT = -((xboxController.getTriggerAxis(Hand.kLeft) + 1) / 2);
-    double axis_RT = (xboxController.getTriggerAxis(Hand.kRight) + 1) / 2;
-    double cancel = axis_LT + axis_RT;
-    return cancel;
-  }
-
-  public static CommandToTake commandToTake() {
-    return commandToTake;
   }
 
   public static JoystickButton j_Three(){
