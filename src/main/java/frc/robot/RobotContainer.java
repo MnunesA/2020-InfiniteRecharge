@@ -46,7 +46,7 @@ public class RobotContainer {
   }
 
   private void configureCommands() {
-    commandToTake = new CommandToTake(intake, ConstantsIntake.LIMITER_SPEED);
+    commandToTake = new CommandToTake(intake, ConstantsIntake.LIMITER_SPEED_COMMANDTOTAKE);
     commandAngulationUp = new CommandAngulationUp(intake, ConstantsIntake.SPEED_ANGULATION_UP);
     commandAngulationDown = new CommandAngulationDown (intake, ConstantsIntake.SPEED_ANGULATION_DOWN);
   }

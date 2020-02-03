@@ -29,7 +29,7 @@ public final class ConstantsIntake {
 
     // SPEED LIMITER
     public static final double 
-    LIMITER_SPEED = 0.7;
+    LIMITER_SPEED_COMMANDTOTAKE = 0.7;
 
     // SPEED
     public static final double 

@@ -53,7 +53,7 @@ int LIMITSWITCH_DOWN_ID) {
     return limitSwitchUp.get();
   }
 
-  public Boolean getLSDown() {
+  public boolean getLSDown() {
     return limitSwitchDown.get();
   }
 
