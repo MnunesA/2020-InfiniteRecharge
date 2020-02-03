@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriverTest;
 import frc.robot.commands.PIDTest;
 import frc.robot.commands.ShooterMove;
 import frc.robot.commands.ShooterTest;
@@ -34,6 +35,7 @@ public class RobotContainer {
   private final PIDTest testPID = new PIDTest (driver);
   private final ShooterMove withPID = new ShooterMove(shooter, sp);
   private final ShooterTest withoutPID = new ShooterTest(shooter);
+  private final DriverTest driverT = new DriverTest(driver);
 
 
   /**
@@ -58,9 +60,10 @@ public class RobotContainer {
     JoystickButton d_b = new JoystickButton(x_box, 2);
     JoystickButton d_x = new JoystickButton(x_box, 3);
 
-    d_a.whenPressed(new ShooterMove(shooter, 500));
+   // d_a.whenPressed(new ShooterMove(shooter, 500));
     d_b.whenPressed(new ShooterTest(shooter));
     d_x.whenPressed(new PIDTest(driver));
+    d_a.whenPressed(new DriverTest(driver));
 
 
   }

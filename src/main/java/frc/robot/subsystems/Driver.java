@@ -36,6 +36,7 @@ public class Driver extends PIDSubsystem {
         setSetpoint(500);
         getController().setTolerance(10);
         enable();
+  
   }
 
   @Override
@@ -70,6 +71,10 @@ public class Driver extends PIDSubsystem {
   public void tankDrive (double spLeft, double spRight){
     leftBox.set(spLeft);
     rightBox.set(spRight);
+  }
+
+  public void rightSet(double sp){
+    rightBox.set(sp);
   }
    
   public boolean atSetPoint(){
