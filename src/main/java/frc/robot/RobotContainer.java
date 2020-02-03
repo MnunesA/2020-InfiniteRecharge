@@ -68,13 +68,17 @@ public class RobotContainer {
 
   // obtém a soma dos dois eixos
   public static double axis_sum() {
-    double axis_LT = -((xboxController.getTriggerAxis(GenericHID.Hand.kLeft) + 1) / 2);
-    double axis_RT = (xboxController.getTriggerAxis(GenericHID.Hand.kRight) + 1) / 2;
+    double axis_LT = -((xboxController.getRawAxis(2) + 1) / 2);
+    double axis_RT = (xboxController.getRawAxis(3) + 1) / 2;
     double cancel = axis_LT + axis_RT;
     return cancel;
   }
 
   public static CommandToTake commandToTake() {
     return commandToTake;
+  }
+
+  public static SubsystemStorage subsStorage() {
+    return storage;
   }
 }

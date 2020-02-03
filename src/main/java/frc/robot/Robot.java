@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.intake.CommandToTake;
 import frc.robot.subsystems.SubsystemIntake;
+import frc.robot.subsystems.SubsystemStorage;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,8 +25,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
   private SubsystemIntake subsystemIntake;
+  private SubsystemStorage subsystemStorage;
   private CommandToTake commandToTake;
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -35,10 +36,11 @@ public class Robot extends TimedRobot {
        // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-    this.subsystemIntake = RobotContainer.subsIntake();
-    this.commandToTake = RobotContainer.commandToTake();
-    // Seta o DefaultCommand para o SubsystemDriver
-    CommandScheduler.getInstance().setDefaultCommand(this.subsystemIntake, this.commandToTake);
+    subsystemIntake = RobotContainer.subsIntake();
+    subsystemStorage = RobotContainer.subsStorage();
+    commandToTake = RobotContainer.commandToTake();
+    CommandScheduler.getInstance().setDefaultCommand(subsystemIntake, commandToTake);
+    CommandScheduler.getInstance().setDefaultCommand(subsystemStorage, commandToTake);
   }
 
   /**
