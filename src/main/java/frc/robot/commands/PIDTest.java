@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Driver;
 
@@ -33,6 +34,9 @@ public class PIDTest extends CommandBase {
   public void execute() {
     pulses = m_driver.getPulses('R');
     m_driver.useOutput(pulses, 500);
+    SmartDashboard.putNumber("Encoder Left", m_driver.getPulses('R'));
+    SmartDashboard.putNumber("Encoder Right", m_driver.getPulses('L'));
+    
   }
 
   // Called once the command ends or is interrupted.

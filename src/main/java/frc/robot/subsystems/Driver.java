@@ -24,7 +24,7 @@ public class Driver extends PIDSubsystem {
   private SpeedControllerGroup rightBox = new SpeedControllerGroup(rearRight, frontRight);
 
   private Encoder encoderLeft = new Encoder(4, 5);
-  private Encoder encoderRight = new Encoder(6, 7);
+  private Encoder encoderRight = new Encoder(7, 8);
 
   /**
    * Creates a new Driver.
@@ -32,7 +32,7 @@ public class Driver extends PIDSubsystem {
   public Driver() {
     super(
         // The PIDController used by the subsystem
-        new PIDController(0, 0, 0));
+        new PIDController(1, 0, 0));
         setSetpoint(500);
         getController().setTolerance(10);
         enable();

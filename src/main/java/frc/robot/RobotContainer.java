@@ -56,9 +56,11 @@ public class RobotContainer {
 
     JoystickButton d_a = new JoystickButton(x_box, 1);
     JoystickButton d_b = new JoystickButton(x_box, 2);
+    JoystickButton d_x = new JoystickButton(x_box, 3);
 
     d_a.whenPressed(new ShooterMove(shooter, 500));
     d_b.whenPressed(new ShooterTest(shooter));
+    d_x.whenPressed(new PIDTest(driver));
 
 
   }
