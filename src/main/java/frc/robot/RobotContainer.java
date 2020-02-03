@@ -21,9 +21,11 @@ import frc.robot.subsystems.SubsystemStorage;
 public class RobotContainer {
 
   private static SubsystemStorage storage;
-  private static CommandStorage cstorage;
+  private static CommandStorage commandStorageUp;
+  private static CommandStorage commandStorageDown;
   private static XboxController xboxController;
   private static JoystickButton RB;
+  private static JoystickButton LB;
 
   public RobotContainer() {
  
@@ -35,16 +37,20 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     RB = new JoystickButton(xboxController, Constants.RB);
+    LB = new JoystickButton(xboxController, Constants.LB);
 
-    RB().whileHeld(RobotContainer.commStorage());
+    RB.whileHeld(commandStorageDown);
+    LB.whileHeld(commandStorageUp);
+
   }
 
   private void configureSubsystems() {
-    storage = new SubsystemStorage(Constants.STORAGE_ID);
+    storage = new SubsystemStorage(ConstantsStorage.MOTOR_STORAGE_ID);
   }
 
   private void configureCommands() { 
-    cstorage = new CommandStorage(storage);
+    commandStorageUp = new CommandStorage(storage, ConstantsStorage.STORAGESPEEDUP);
+    commandStorageDown = new CommandStorage(storage, ConstantsStorage.STORAGESPEEDDOWN);
   }
 
   private void configureJoysticks() {
@@ -66,11 +72,4 @@ public class RobotContainer {
     return storage;
   }
 
-  public static CommandStorage commStorage(){
-    return cstorage;
-  }
-
-  public static JoystickButton RB(){
-    return RB;
-  }
 }

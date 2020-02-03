@@ -8,8 +8,6 @@
 package frc.robot.commands.storage;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.SubsystemStorage;
 
 public class CommandStorage extends CommandBase {
@@ -17,7 +15,10 @@ public class CommandStorage extends CommandBase {
   private SubsystemStorage subsStorage;
   private double storageSpeed;
 
-  public CommandStorage(SubsystemStorage subsystemSt) {
+  public CommandStorage(SubsystemStorage subsystemSt, double SPEEED_STORAGE) {
+
+    this.storageSpeed = SPEEED_STORAGE;
+
     this.subsStorage = subsystemSt;
     addRequirements(subsStorage);
   }
@@ -30,8 +31,7 @@ public class CommandStorage extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.storageSpeed = Constants.STORAGESPEED;
-    RobotContainer.subsStorage().setSpeedStorage(this.storageSpeed);
+    subsStorage.setSpeedStorage(this.storageSpeed);
   }
 
   // Called once the command ends or is interrupted.
