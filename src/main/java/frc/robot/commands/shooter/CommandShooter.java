@@ -8,8 +8,6 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.SubsystemShooter;
 
 public class CommandShooter extends CommandBase {
@@ -17,8 +15,11 @@ public class CommandShooter extends CommandBase {
   private SubsystemShooter subsShooter;
   private double shooterSpeed;
 
-  public CommandShooter(SubsystemShooter subsystemS) {
-    this.subsShooter = subsystemS;
+  public CommandShooter(SubsystemShooter subsystemShooter, double SPEED_SHOOTER) {
+
+    this.shooterSpeed = SPEED_SHOOTER;
+
+    this.subsShooter = subsystemShooter;
     addRequirements(subsShooter);
   }
 
@@ -30,8 +31,7 @@ public class CommandShooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.shooterSpeed = Constants.SHOOTERSPEED;
-    RobotContainer.subsShooter().setSpeedShooter(this.shooterSpeed);
+    subsShooter.setSpeedShooter(this.shooterSpeed);
   }
 
   // Called once the command ends or is interrupted.

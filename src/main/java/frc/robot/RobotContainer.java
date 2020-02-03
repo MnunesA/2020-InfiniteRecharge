@@ -13,7 +13,7 @@ import frc.robot.commands.shooter.CommandAngle;
 import frc.robot.commands.shooter.CommandShooter;
 import frc.robot.subsystems.SubsystemShooter;
 
-/
+/*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
  * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
@@ -22,9 +22,9 @@ import frc.robot.subsystems.SubsystemShooter;
 public class RobotContainer {
 
 private static SubsystemShooter shooter;
-private static CommandShooter cshooter;
-private static CommandAngle positiveangle;
-private static CommandAngle negativeangle; 
+private static CommandShooter commandShooter;
+private static CommandAngle commandAngleUp;
+private static CommandAngle commandAngleDown; 
 private static Joystick joystick;
 private static JoystickButton J_Thumb;
 private static JoystickButton J_Fire;
@@ -44,61 +44,27 @@ private static JoystickButton Test;
     J_Thumb = new JoystickButton(joystick, Constants.J_THUMB);
     Test = new JoystickButton(joystick, Constants.TEST);
 
-    J_Fire().whileHeld(RobotContainer.commShooter());
-    J_Thumb().whileHeld(RobotContainer.commAnglePositive());
-    Test().whileHeld(RobotContainer.commAngleNegative());
+    J_Fire.whileHeld(commandShooter);
+    J_Thumb.whileHeld(commandAngleUp);
+    Test.whileHeld(commandAngleDown);
   }
 
   private void configureSubsystems() {
-    shooter = new SubsystemShooter(Constants.SHOOTER_ID, Constants.ANGLE_ID);
+    shooter = new SubsystemShooter(ConstantsShooter.MOTOR_SHOOTER_ID, ConstantsShooter.MOTOR_ANGLE_ID);
   }
 
-  private void configureCommands() { 
-    cshooter = new CommandShooter(shooter);
-    positiveangle = new CommandAngle(shooter, Constants.ANGLE_SPEED_POSITIVE);
-    negativeangle = new CommandAngle(shooter, Constants.ANGLE_SPEED_NEGATIVE);
+  private void configureCommands() {
+    commandShooter = new CommandShooter(shooter, ConstantsShooter.SHOOTERSPEED);
+    commandAngleUp = new CommandAngle(shooter, ConstantsShooter.ANGLE_SPEED_POSITIVE);
+    commandAngleDown = new CommandAngle(shooter, ConstantsShooter.ANGLE_SPEED_NEGATIVE);
   }
 
   private void configureJoysticks() {
     joystick = new Joystick(Constants.JOYSTICK);
   }
 
-  /
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
- /* public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }*/
-
   public static SubsystemShooter subsShooter(){
     return shooter;
-  }
-
-  public static CommandShooter commShooter(){
-    return cshooter;
-  }
-
-  public static CommandAngle commAnglePositive(){
-    return positiveangle;
-  }
-  
-  public static CommandAngle commAngleNegative(){
-    return negativeangle;
-  }
-
-  public static JoystickButton J_Fire(){
-    return J_Fire;
-  }
-
-  public static JoystickButton J_Thumb(){
-    return J_Thumb;
-  }
-
-  public static JoystickButton Test(){
-    return Test;
   }
 
 }

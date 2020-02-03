@@ -8,7 +8,6 @@
 package frc.robot.commands.shooter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.SubsystemShooter;
 
 public class CommandAngle extends CommandBase {
@@ -16,9 +15,11 @@ public class CommandAngle extends CommandBase {
   private SubsystemShooter subsShooter;
   private double angleSpeed;
 
-  public CommandAngle(SubsystemShooter subsystemS, double angleSpeed) {
-    this.subsShooter = subsystemS;
-    this.angleSpeed = angleSpeed;
+  public CommandAngle(SubsystemShooter subsystemShooter, double SPEED_ANGLE) {
+    
+    this.angleSpeed = SPEED_ANGLE;
+    
+    this.subsShooter = subsystemShooter;
     addRequirements(subsShooter);
   }
 
@@ -30,7 +31,7 @@ public class CommandAngle extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.subsShooter().setSpeedAngle(this.angleSpeed);
+    subsShooter.setSpeedAngle(this.angleSpeed);
   }
 
   // Called once the command ends or is interrupted.

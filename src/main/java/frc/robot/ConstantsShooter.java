@@ -15,15 +15,20 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
-    
-    //Joystick/Bottons
+public final class ConstantsShooter {
+
+    //PWM
     public static final int
-    JOYSTICK = 1,
+    MOTOR_SHOOTER_ID = 4;
+    
+    //CAN
+    public static final int
+    MOTOR_ANGLE_ID = 2;
+        
+    //Speed
+    public static final double
+    SHOOTERSPEED = 0.5,
+    ANGLE_SPEED_POSITIVE = 0.4,
+    ANGLE_SPEED_NEGATIVE = -0.4;
 
-    J_FIRE = 1,
-    J_THUMB = 2,
-
-    //Botao para teste, pois no documento consta apenas um (J_Thumb) para subir e descer (?)
-    TEST = 4;
 }

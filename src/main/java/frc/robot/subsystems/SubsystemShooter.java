@@ -13,14 +13,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.RobotContainer;
 
 public class SubsystemShooter extends SubsystemBase {
-
-  //Botões no manche/Joystick
-  private boolean J_Fire;
-  private boolean J_Thumb;
-  private boolean Test;
 
   //velocidade dos motores
   private double ShooterSpeed;
@@ -55,15 +49,6 @@ public class SubsystemShooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-    this.J_Fire = RobotContainer.J_Fire().get();
-    this.J_Thumb = RobotContainer.J_Thumb().get();
-
-    this.Test = RobotContainer.Test().get();
-
-    SmartDashboard.putBoolean("Pressed (J_Fire)", this.J_Fire);
-    SmartDashboard.putBoolean("Pressed (J_Thumb)", this.J_Thumb);
-
-    SmartDashboard.putBoolean("Pressed (Test)", this.Test);
 
     SmartDashboard.putNumber("Speed (Shooter)", this.ShooterSpeed);
     SmartDashboard.putNumber("Speed (Angle)", this.AngleSpeed);
