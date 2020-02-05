@@ -7,19 +7,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Driver;
 
-public class PIDTest extends CommandBase {
+public class Auto extends CommandBase {
 
   private final Driver m_driver;
-  private int pulses = 0;
-  //private double pulses_current = 0;
   /**
-   * Creates a new PIDTeste.
+   * Creates a new Auto.
    */
-  public PIDTest(Driver driver) {
+  public Auto(Driver driver) {
     m_driver = driver;
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -32,20 +29,16 @@ public class PIDTest extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    pulses = m_driver.getPulses('R');
-    m_driver.useOutput(5000, pulses);
-    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driver.tankDrive(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_driver.atSetPoint();
+    return false;
   }
 }

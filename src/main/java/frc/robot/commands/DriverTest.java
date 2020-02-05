@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Driver;
 
@@ -32,6 +33,9 @@ public class DriverTest extends CommandBase {
   @Override
   public void execute() {
     m_driver.rightSet(0.5);
+    
+    SmartDashboard.putNumber("Encoder Left", m_driver.getPulses('R'));
+    SmartDashboard.putNumber("Encoder Right", m_driver.getPulses('L'));
   }
 
   // Called once the command ends or is interrupted.

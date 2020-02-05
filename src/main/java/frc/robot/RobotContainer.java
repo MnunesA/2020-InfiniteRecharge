@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.Auto;
 import frc.robot.commands.DriverTest;
 import frc.robot.commands.PIDTest;
 import frc.robot.commands.ShooterMove;
@@ -17,6 +18,8 @@ import frc.robot.commands.ShooterTest;
 import frc.robot.subsystems.Driver;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -36,6 +39,7 @@ public class RobotContainer {
   private final ShooterMove withPID = new ShooterMove(shooter, sp);
   private final ShooterTest withoutPID = new ShooterTest(shooter);
   private final DriverTest driverT = new DriverTest(driver);
+  private final Auto auto_ = new Auto(driver);
 
 
   /**
@@ -62,8 +66,8 @@ public class RobotContainer {
 
    // d_a.whenPressed(new ShooterMove(shooter, 500));
     d_b.whenPressed(new ShooterTest(shooter));
-    d_x.whenPressed(new PIDTest(driver));
-    d_a.whenPressed(new DriverTest(driver));
+    d_x.whenPressed(new InstantCommand(driver::enable, driver));
+    d_a.whenHeld(new DriverTest(driver));
 
 
   }
@@ -75,6 +79,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return testPID;
+    return auto_;
   }
 }

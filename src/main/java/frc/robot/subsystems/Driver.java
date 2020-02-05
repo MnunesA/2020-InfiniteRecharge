@@ -11,17 +11,21 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 
 public class Driver extends PIDSubsystem {
 
-  private VictorSP frontLeft = new VictorSP(0);
-  private VictorSP frontRight = new VictorSP(1);
-  private VictorSP rearLeft = new VictorSP(2);
-  private VictorSP rearRight = new VictorSP(3);
+  private VictorSP frontLeft = new VictorSP(2);
+  private VictorSP frontRight = new VictorSP(0);
+  private VictorSP rearLeft = new VictorSP(3);
+  private VictorSP rearRight = new VictorSP(1);
 
   private SpeedControllerGroup leftBox = new SpeedControllerGroup(rearLeft, frontLeft);
   private SpeedControllerGroup rightBox = new SpeedControllerGroup(rearRight, frontRight);
+  private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(0, 0, 0);
+
+
 
   private Encoder encoderLeft = new Encoder(4, 5);
   private Encoder encoderRight = new Encoder(7, 8);
@@ -33,29 +37,24 @@ public class Driver extends PIDSubsystem {
     super(
         // The PIDController used by the subsystem
         new PIDController(1, 0, 0));
-        setSetpoint(500);
         getController().setTolerance(10);
         enable();
+        getController().setSetpoint(5000);
+        encoderRight.reset();
+        feedforward.calculate(10, 20);
+
   
   }
 
   @Override
   public void useOutput(double output, double setpoint) {
-    tankDrive( setpoint - output, setpoint - output);
-  }
-
-  public void resetEncoder(){
-    encoderRight.reset();
-  }
-  
-  public void setPoint(){
-    getController().setSetpoint(500);
+    tankDrive(output + getController().calculate(setpoint), output + getController().calculate(setpoint));
   }
 
   @Override
   public double getMeasurement() {
     // Return the process variable measurement here
-    return encoderLeft.getDistance();
+    return encoderRight.getDistance();
   }
 
   public int getPulses(char encoder) {
@@ -69,8 +68,8 @@ public class Driver extends PIDSubsystem {
   }
 
   public void tankDrive (double spLeft, double spRight){
-    leftBox.set(spLeft);
-    rightBox.set(spRight);
+    frontLeft.set(spLeft);
+    frontRight.set(spRight);
   }
 
   public void rightSet(double sp){
