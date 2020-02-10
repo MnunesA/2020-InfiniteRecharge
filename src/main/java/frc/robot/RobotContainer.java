@@ -7,49 +7,31 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.driver.CommandDriver;
-import frc.robot.subsystems.SubsystemDriver;
+import frc.robot.subsystems.SubsystemClimber;
 
 public class RobotContainer {
 
-  private static SubsystemDriver driver;
-  private static XboxController xboxController;
-  private static CommandDriver runDriver;
+  SubsystemClimber subsystemClimber;
 
   public RobotContainer() {
-    configureButtonBindings();
     configureSubsystems();
     configureCommands();
     configureJoysticks();
+    configureButtonBindings();
   }
 
   private void configureButtonBindings() {}
 
   private void configureSubsystems() {
-    driver = new SubsystemDriver(
-            ConstantsDriver.MOTOR_LEFT_FRONT_ID,
-            ConstantsDriver.MOTOR_LEFT_REAR_ID,
-            ConstantsDriver.MOTOR_RIGHT_FRONT_ID,
-            ConstantsDriver.MOTOR_RIGHT_REAR_ID,
-            ConstantsDriver.ENCODER_LEFT_CHANNEL_A_ID,
-            ConstantsDriver.ENCODER_LEFT_CHANNEL_B_ID,
-            ConstantsDriver.ENCODER_RIGHT_CHANNEL_A_ID,
-            ConstantsDriver.ENCODER_RIGHT_CHANNEL_B_ID,
-            ConstantsDriver.ENCODERS_MAX_PERIOD,
-            ConstantsDriver.ENCODERS_MIN_RATE,
-            ConstantsDriver.ENCODERS_DISTANCE_PER_PULSE,
-            Constants.DEADBAND_VALUE,
-            ConstantsDriver.ENCODER_LEFT_INVERTED,
-            ConstantsDriver.ENCODER_RIGHT_INVERTED);
+    subsystemClimber = new SubsystemClimber(ConstantsClimber.MOTOR_ELEVATOR_1_ID, ConstantsClimber.MOTOR_ELEVATOR_2_ID, 
+    ConstantsClimber.MOTOR_CLIMBER_1_ID, ConstantsClimber.MOTOR_CLIMBER_2_ID);
   }
 
   private void configureCommands() {
-    runDriver = new CommandDriver(driver);
+
   }
   private void configureJoysticks() {
-    xboxController = new XboxController(Constants.XBOX_ID);
+  
   }
 
   /**
@@ -65,25 +47,5 @@ public class RobotContainer {
     }
   */
   
-  public static SubsystemDriver subsDriver() {
-    return driver;
-  }
-  
-  public static XboxController xboxController(){
-    return xboxController;
-  }
-  
   // Obtém o valor referente ao eixo LY do controle de XBOX
-  public static double axis_LY(){
-    return ConstantsDriver.LIMITER_LINEAR * xboxController.getRawAxis(1);
-  }
-  
-    // Obtém o valor referente ao eixo RX do controle de XBOX invertido
-  public static double axis_RX(){
-    return ConstantsDriver.LIMITER_ROTATION * xboxController.getRawAxis(4);
-  }
-  
-  public static CommandDriver commDriver(){
-    return runDriver;
-  }
 }
