@@ -33,7 +33,7 @@ public class RobotContainer {
   
   private final Auto auto_ = new Auto(driver);
   private final TankDriver tankD = new TankDriver(driver);
-  private final DriverTarget target = new DriverTarget(driver, sp);
+  private final DriverTarget target = new DriverTarget(driver, 0);
   private final Autonomous auto = new Autonomous(driver);
     
   /**
