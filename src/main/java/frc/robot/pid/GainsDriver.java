@@ -10,7 +10,7 @@ package frc.robot.pid;
 /**
  * Add your docs here.
  */
-public class Gains {
+public class GainsDriver {
         public final double kP;
         public final double kI;
         public final double kD;
@@ -18,7 +18,7 @@ public class Gains {
         public final int kIzone;
         public final double kPeakOutput;
         
-        public Gains(double _kP, double _kI, double _kD, double _kF, int _kIzone, double _kPeakOutput){
+        public GainsDriver(double _kP, double _kI, double _kD, double _kF, int _kIzone, double _kPeakOutput){
             kP = _kP;
             kI = _kI;
             kD = _kD;

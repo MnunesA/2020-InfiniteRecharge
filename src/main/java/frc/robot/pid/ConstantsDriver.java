@@ -10,7 +10,7 @@ package frc.robot.pid;
 /**
  * Add your docs here.
  */
-public class constants {
+public class ConstantsDriver {
     /**
 	 * Which PID slot to pull gains from. Starting 2018, you can choose from
 	 * 0,1,2 or 3. Only the first two (0,1) are visible in web-based
@@ -43,6 +43,6 @@ public class constants {
 	 * Gains used in Positon Closed Loop, to be adjusted accordingly
      * Gains(kp, ki, kd, kf, izone, peak output);
      */
-    public static final Gains kGains = new Gains(0.15, 0.0, 1.0, 0.0, 0, 1.0);
+    public static final GainsDriver kGains = new GainsDriver(0.15, 0.0, 1.0, 0.0, 0, 1.0);
 }
 

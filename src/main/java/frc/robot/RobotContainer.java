@@ -11,12 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.Auto;
-import frc.robot.commands.DriverTest;
-import frc.robot.commands.PIDTest;
-import frc.robot.commands.ShooterMove;
-import frc.robot.commands.ShooterTest;
+import frc.robot.commands.Autonomous;
+import frc.robot.commands.DriverTarget;
+import frc.robot.commands.TankDriver;
 import frc.robot.subsystems.Driver;
-import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
@@ -31,23 +29,27 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
 
   private final double sp = 0;
-  // The robot's subsystems and commands are defined here...
   private final Driver driver = new Driver();
-  private final Shooter shooter = new Shooter();
   
-  private final PIDTest testPID = new PIDTest (driver);
-  private final ShooterMove withPID = new ShooterMove(shooter, sp);
-  private final ShooterTest withoutPID = new ShooterTest(shooter);
-  private final DriverTest driverT = new DriverTest(driver);
   private final Auto auto_ = new Auto(driver);
-
-
+  private final TankDriver tankD = new TankDriver(driver);
+  private final DriverTarget target = new DriverTarget(driver, sp);
+  private final Autonomous auto = new Autonomous(driver);
+    
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // Configure the button bindings
     configureButtonBindings();
+   driver.setDefaultCommand(tankD); 
+  }
+
+  public double axisLY(){
+    return this.axisLY();
+  }
+
+  public double axisRX(){
+    return axisRX();
   }
 
   /**
@@ -57,18 +59,17 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    Joystick x_box = new Joystick(0);
+   XboxController xbox = new XboxController(0);
     Joystick manche = new Joystick(1);
 
-    JoystickButton d_a = new JoystickButton(x_box, 1);
-    JoystickButton d_b = new JoystickButton(x_box, 2);
-    JoystickButton d_x = new JoystickButton(x_box, 3);
+    JoystickButton d_a = new JoystickButton(xbox, 1);
+    JoystickButton d_b = new JoystickButton(xbox, 2);
+    JoystickButton d_x = new JoystickButton(xbox, 3);
 
-   // d_a.whenPressed(new ShooterMove(shooter, 500));
-    d_b.whenPressed(new ShooterTest(shooter));
-    d_x.whenPressed(new InstantCommand(driver::enable, driver));
-    d_a.whenHeld(new DriverTest(driver));
+    double axis_LY = xbox.getRawAxis(1);
+    double axis_RX = xbox.getRawAxis(2);
 
+    d_a.whenHeld(new DriverTarget(driver, 5000));
 
   }
 
@@ -79,6 +80,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return auto_;
+    return auto;
   }
 }

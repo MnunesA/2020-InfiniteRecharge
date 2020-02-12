@@ -8,38 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Driver;
 
-public class ShooterMove extends CommandBase {
+public class DriverTarget extends CommandBase {
 
-  private final Shooter shooter;
-  private double setP = 0;
+  Driver driver_;
+  private double distance;
   /**
-   * Creates a new ShooterMove.
+   * Creates a new DriverTarget.
    */
-  public ShooterMove(Shooter m_shooter, double setPoint) {
-    shooter = m_shooter;
-    setP = setPoint;
+  public DriverTarget(Driver driver, double distance) {
+    this.distance = distance;
+    driver_ = driver;
+    addRequirements(driver_);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.resetEncoder();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.moveToPosition(this.setP);
-    
+    driver_.setPosition(distance);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.shooterButton(0);
   }
 
   // Returns true when the command should end.

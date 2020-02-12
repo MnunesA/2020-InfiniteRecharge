@@ -7,80 +7,98 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class Driver extends PIDSubsystem {
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.pid.ConstantsDriver;
 
-  private VictorSP frontLeft = new VictorSP(2);
-  private VictorSP frontRight = new VictorSP(0);
-  private VictorSP rearLeft = new VictorSP(3);
-  private VictorSP rearRight = new VictorSP(1);
+public class Driver extends SubsystemBase {
 
-  private SpeedControllerGroup leftBox = new SpeedControllerGroup(rearLeft, frontLeft);
-  private SpeedControllerGroup rightBox = new SpeedControllerGroup(rearRight, frontRight);
-  private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(0, 0, 0);
+  private TalonSRX masterLeft = new TalonSRX(0);
+  private TalonSRX slaveLeft = new TalonSRX(2);
+  private TalonSRX masterRight = new TalonSRX(3);
+  private TalonSRX slaveRight = new TalonSRX(1);
 
+  //private ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
+  public void tankDriver(double spLeft, double spRight){
+    masterLeft.set(ControlMode.PercentOutput, spLeft);
+    masterRight.set(ControlMode.PercentOutput, spRight);
+    slaveLeft.follow(masterLeft);
+    slaveRight.follow(masterRight);
+  }
 
-  private Encoder encoderLeft = new Encoder(4, 5);
-  private Encoder encoderRight = new Encoder(7, 8);
 
   /**
    * Creates a new Driver.
    */
   public Driver() {
-    super(
-        // The PIDController used by the subsystem
-        new PIDController(1, 0, 0));
-        getController().setTolerance(10);
-        enable();
-        getController().setSetpoint(5000);
-        encoderRight.reset();
-        feedforward.calculate(10, 20);
+    
+    masterLeft.setNeutralMode(NeutralMode.Brake);
+    masterRight.setNeutralMode(NeutralMode.Brake);
+    slaveRight.setNeutralMode(NeutralMode.Brake);
+    slaveLeft.setNeutralMode(NeutralMode.Brake);
+    reset();
+    Driver();
+  }
 
+ /* public double getAngle(){
+    return gyro.getAngle();
+  }*/
+
+ /* public void initGyro(){
+    gyro.calibrate();
+    gyro.reset();
+  }*/
+
+  public void reset(){
+    masterRight.setSelectedSensorPosition(0, 0, 30);
+    masterLeft.setSelectedSensorPosition(0, 0, 30);
+  }
+
+  public void setPosition(double position){
+    masterLeft.set(ControlMode.Position, position);
+    masterRight.set(ControlMode.Position, position);
+    slaveLeft.follow(masterLeft);
+    slaveRight.follow(masterRight);
+
+  }
+
+  public void Driver(){
+    masterRight.configFactoryDefault();
+      
+    masterRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,ConstantsDriver.kPIDLoopIdx,ConstantsDriver.kTimeoutMs);
   
-  }
-
-  @Override
-  public void useOutput(double output, double setpoint) {
-    tankDrive(output + getController().calculate(setpoint), output + getController().calculate(setpoint));
-  }
-
-  @Override
-  public double getMeasurement() {
-    // Return the process variable measurement here
-    return encoderRight.getDistance();
-  }
-
-  public int getPulses(char encoder) {
-   int pulses;
-   if(encoder == 'L'){
-     pulses = encoderLeft.get();
-   } else {
-     pulses = encoderRight.get();
-   } 
-   return pulses;
-  }
-
-  public void tankDrive (double spLeft, double spRight){
-    frontLeft.set(spLeft);
-    frontRight.set(spRight);
-  }
-
-  public void rightSet(double sp){
-    rightBox.set(sp);
-  }
-   
-  public boolean atSetPoint(){
-     return getController().atSetpoint();
-  }
+    masterRight.setSensorPhase(ConstantsDriver.kSensorPhase);
+      masterRight.setInverted(ConstantsDriver.kMotorInvert);
   
-
-
-
+      masterRight.configNominalOutputForward(0, ConstantsDriver.kTimeoutMs);
+      masterRight.configNominalOutputReverse(0, ConstantsDriver.kTimeoutMs);
+      masterRight.configPeakOutputForward(1, ConstantsDriver.kTimeoutMs);
+      masterRight.configPeakOutputReverse(-1, ConstantsDriver.kTimeoutMs);
+  
+      masterRight.configAllowableClosedloopError(0, ConstantsDriver.kPIDLoopIdx, ConstantsDriver.kTimeoutMs);
+  
+      masterRight.config_kF(ConstantsDriver.kPIDLoopIdx, ConstantsDriver.kGains.kF, ConstantsDriver.kTimeoutMs);
+      masterRight.config_kP(ConstantsDriver.kPIDLoopIdx, ConstantsDriver.kGains.kP, ConstantsDriver.kTimeoutMs);
+      masterRight.config_kI(ConstantsDriver.kPIDLoopIdx, ConstantsDriver.kGains.kI, ConstantsDriver.kTimeoutMs);
+      masterRight.config_kD(ConstantsDriver.kPIDLoopIdx, ConstantsDriver.kGains.kD, ConstantsDriver.kTimeoutMs);
+  
+      int absolutePosition = masterRight.getSensorCollection().getPulseWidthPosition();
+  
+      absolutePosition &= 0xFFF;
+      if (ConstantsDriver.kSensorPhase) { absolutePosition *= -1; }
+      if (ConstantsDriver.kMotorInvert) { absolutePosition *= -1; }
+      
+      masterRight.setSelectedSensorPosition(absolutePosition, ConstantsDriver.kPIDLoopIdx, ConstantsDriver.kTimeoutMs);
+      }
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
 }
