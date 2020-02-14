@@ -29,7 +29,8 @@ palavras separadas por underline têm sua base de valor nas classes "constants".
     MOTOR_CLIMBER_1_ID = 10,
     MOTOR_CLIMBER_2_ID = 11;
 
-
-
+  // SPEEDS
+    public static final double
+    SPEED_COMMANDELEVATOR = 0.5;
 
 }

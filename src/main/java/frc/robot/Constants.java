@@ -28,8 +28,9 @@ palavras separadas por underline têm sua base de valor nas classes "constants".
     CIRCUMFERENCE_WHEEL = (2 * 3.1415 * (0.0254 * 6) / 2), //meters
     DEADBAND_VALUE = 0.04;
    
-    // CONTROLLER XBOX
+    // CONTROLLER
     public static final int
-    XBOX_ID = 0;
+    XBOX_ID = 0,
+    JOYSTICK_ID = 1;
 }
 

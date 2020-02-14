@@ -7,11 +7,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.commands.CommandClimber;
+import frc.robot.commands.CommandElevator;
 import frc.robot.subsystems.SubsystemClimber;
+import frc.robot.subsystems.SubsystemElevator;
 
 public class RobotContainer {
 
-  SubsystemClimber subsystemClimber;
+  private static SubsystemClimber subsystemClimber;
+  private static SubsystemElevator subsystemElevator;
+  private static CommandElevator commandElevator;
+  private static CommandClimber commandClimber;
+  private static Joystick joystick;
 
   public RobotContainer() {
     configureSubsystems();
@@ -23,15 +31,26 @@ public class RobotContainer {
   private void configureButtonBindings() {}
 
   private void configureSubsystems() {
-    subsystemClimber = new SubsystemClimber(ConstantsClimber.MOTOR_ELEVATOR_1_ID, ConstantsClimber.MOTOR_ELEVATOR_2_ID, 
-    ConstantsClimber.MOTOR_CLIMBER_1_ID, ConstantsClimber.MOTOR_CLIMBER_2_ID);
+    subsystemClimber = new SubsystemClimber(ConstantsClimber.MOTOR_CLIMBER_1_ID, 
+    ConstantsClimber.MOTOR_CLIMBER_2_ID);
+    subsystemElevator = new SubsystemElevator(ConstantsClimber.MOTOR_ELEVATOR_1_ID,
+    ConstantsClimber.MOTOR_ELEVATOR_2_ID);
   }
 
   private void configureCommands() {
-
+    commandElevator = new CommandElevator(subsystemElevator, ConstantsClimber.SPEED_COMMANDELEVATOR);
+    commandClimber = new CommandClimber(subsystemClimber);
   }
   private void configureJoysticks() {
+    joystick = new Joystick(Constants.JOYSTICK_ID);
+  }
   
+  public static int getPOV(){
+    return joystick.getPOV();
+  }
+
+  public static double getJoystick_Y() {
+    return -joystick.getRawAxis(1) * 0.6;
   }
 
   /**
@@ -47,5 +66,19 @@ public class RobotContainer {
     }
   */
   
-  // Obtém o valor referente ao eixo LY do controle de XBOX
+  public static SubsystemClimber subsystemClimber() {
+    return subsystemClimber;
+  }
+
+  public static CommandClimber commandClimber() {
+    return commandClimber;
+  }
+
+  public static SubsystemElevator subsystemElevator() {
+    return subsystemElevator;
+  }
+
+  public static CommandElevator commandElevator() {
+    return commandElevator;
+  }
 }
