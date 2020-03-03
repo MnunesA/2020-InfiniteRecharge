@@ -23,6 +23,5 @@ Todos as variáveis no código cujo o nome está escrito com todas as letras mai
 
 // PWM
 public static final int
-MOTOR_SHOOTER_ID = 4,
-MOTOR_SHOOTERANGLE_ID = 5;
+MOTOR_SHOOTER_ID = 3;
 }

@@ -42,7 +42,7 @@ public class RobotContainer {
 
   private void configureSubsystems() {
     subsystemStorage = new SubsystemStorage(ConstantsStorage.MOTOR_STORAGE_ID);
-    subsystemShooter = new SubsystemShooter(ConstantsShooter.MOTOR_SHOOTER_ID, ConstantsShooter.MOTOR_SHOOTERANGLE_ID);
+    subsystemShooter = new SubsystemShooter(ConstantsShooter.MOTOR_SHOOTER_ID);
   }
 
   private void configureCommands() {
