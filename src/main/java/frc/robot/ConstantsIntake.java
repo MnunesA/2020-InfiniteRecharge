@@ -19,8 +19,8 @@ public final class ConstantsIntake {
 
     // PWM
     public static final int
-    MOTOR_ANGULATION_ID = 7,
-    MOTOR_TO_TAKE_ID = 8;
+    MOTOR_ANGULATION_ID = 1,
+    MOTOR_TO_TAKE_ID = 0;
 
     // DIO
     public static final int
