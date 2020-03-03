@@ -34,7 +34,7 @@ public class RobotContainer {
     subsystemClimber = new SubsystemClimber(ConstantsClimber.MOTOR_CLIMBER_1_ID, 
     ConstantsClimber.MOTOR_CLIMBER_2_ID);
     subsystemElevator = new SubsystemElevator(ConstantsClimber.MOTOR_ELEVATOR_1_ID,
-    ConstantsClimber.MOTOR_ELEVATOR_2_ID);
+    ConstantsClimber.MOTOR_ELEVATOR_2_ID, ConstantsClimber.ENCODER_ELEVATOR_A, ConstantsClimber.ENCODER_ELEVATOR_B, ConstantsClimber.ENCODER_ELEVATOR_INERTED);
   }
 
   private void configureCommands() {

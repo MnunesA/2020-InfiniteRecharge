@@ -24,13 +24,25 @@ palavras separadas por underline têm sua base de valor nas classes "constants".
 
   // PWM
   public static final int
-    MOTOR_ELEVATOR_1_ID = 8,
-    MOTOR_ELEVATOR_2_ID = 9,
-    MOTOR_CLIMBER_1_ID = 10,
-    MOTOR_CLIMBER_2_ID = 11;
+    MOTOR_ELEVATOR_1_ID = 6,
+    MOTOR_ELEVATOR_2_ID = 7,
+    MOTOR_CLIMBER_1_ID = 4,
+    MOTOR_CLIMBER_2_ID = 5;
 
   // SPEEDS
-    public static final double
+  public static final double
     SPEED_COMMANDELEVATOR = 0.5;
 
+  //Digital Input
+  public static final int
+    ENCODER_ELEVATOR_A = 5,
+    ENCODER_ELEVATOR_B = 6;
+
+    //Digital Input Inverse
+  public static final boolean
+    ENCODER_ELEVATOR_INERTED = false;
+
+  //Encoder Elevator MAX
+  public static final int
+    ENCODER_ELEVATOR_MAX = 1167;
 }
