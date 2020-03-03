@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -34,11 +37,11 @@ public class SubsystemDriver extends SubsystemBase {
  private boolean ENCODER_LEFT_INV;
  private boolean ENCODER_RIGHT_INV;
 
- private VictorSP motorLeftFront;
- private VictorSP motorLeftRear;
- private VictorSP motorRightFront;
- private VictorSP motorRightRear;
- 
+ private WPI_TalonSRX motorLeftFront;
+ private WPI_TalonSRX motorLeftRear;
+ private WPI_TalonSRX motorRightFront;
+ private WPI_TalonSRX motorRightRear;
+
  private SpeedControllerGroup motorLeft;
  private SpeedControllerGroup motorRight;
  
@@ -66,10 +69,10 @@ double DEADBAND_VALUE, boolean ENCODER_LEFT_INVERTED, boolean ENCODER_RIGHT_INVE
   this.ENCODER_LEFT_INV = ENCODER_LEFT_INVERTED;
   this.ENCODER_RIGHT_INV = ENCODER_RIGHT_INVERTED;
   
-  this.motorLeftFront = new VictorSP(LF_ID);
-  this.motorLeftRear = new VictorSP(LR_ID);
-  this.motorRightFront = new VictorSP(RF_ID);
-  this.motorRightRear = new VictorSP(RR_ID);
+  this.motorLeftFront = new WPI_TalonSRX(LF_ID);
+  this.motorLeftRear = new WPI_TalonSRX(LR_ID);
+  this.motorRightFront = new WPI_TalonSRX(RF_ID);
+  this.motorRightRear = new WPI_TalonSRX(RR_ID);
   
   this.motorLeft = new SpeedControllerGroup(motorLeftFront, motorLeftRear);
   this.motorRight = new SpeedControllerGroup(motorRightFront, motorRightRear);
