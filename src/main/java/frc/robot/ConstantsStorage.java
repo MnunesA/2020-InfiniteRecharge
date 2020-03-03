@@ -19,7 +19,7 @@ public final class ConstantsStorage {
 
     //PWM
     public static final int
-    MOTOR_STORAGE_ID = 4;
+    MOTOR_STORAGE_ID = 2;
 
     //Speed
     public static final double
