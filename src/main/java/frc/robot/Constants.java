@@ -17,13 +17,12 @@ package frc.robot;
  */
 public final class Constants {
     
-    //Joystick/Bottons
+    //Joystick
     public static final int
-    JOYSTICK = 1,
+    JOYSTICK = 1;
 
-    J_FIRE = 1,
-    J_THUMB = 2,
+    //buttons
+    public static final int
+    J_FIRE = 1;
 
-    //Botao para teste, pois no documento consta apenas um (J_Thumb) para subir e descer (?)
-    TEST = 4;
 }

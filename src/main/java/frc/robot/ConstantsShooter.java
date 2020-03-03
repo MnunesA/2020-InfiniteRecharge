@@ -19,16 +19,10 @@ public final class ConstantsShooter {
 
     //PWM
     public static final int
-    MOTOR_SHOOTER_ID = 4;
-    
-    //CAN
-    public static final int
-    MOTOR_ANGLE_ID = 2;
+    MOTOR_SHOOTER_ID = 3;
         
     //Speed
     public static final double
-    SHOOTERSPEED = 0.5,
-    ANGLE_SPEED_POSITIVE = 0.4,
-    ANGLE_SPEED_NEGATIVE = -0.4;
+    SHOOTERSPEED = 0.5;
 
 }
