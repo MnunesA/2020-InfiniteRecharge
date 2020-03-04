@@ -26,5 +26,13 @@ palavras separadas por underline têm sua base de valor nas classes "constants".
 public static final int 
 MOTOR_CONTROL_PANEL = 8;
 
+//SPEED
+public static final double
+CONTROL_PANEL_SPEED = 0.4;
+
+// Timer
+public static final double
+TIMER_CONTROLPANEL = 10.0;
+
 }
 

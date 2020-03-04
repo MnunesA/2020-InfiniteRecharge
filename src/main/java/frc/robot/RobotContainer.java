@@ -30,7 +30,7 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     X = new JoystickButton(xboxController, 3);
-    X.whileHeld(commandControlPanel);
+    X.whenPressed(commandControlPanel);
   }
 
   private void configureSubsystems() {
@@ -38,7 +38,7 @@ public class RobotContainer {
   }
 
   private void configureCommands() {
-    commandControlPanel = new CommandControlPanel(subsystemControlPanel, 0.5);
+    commandControlPanel = new CommandControlPanel(subsystemControlPanel, ConstantsControlPanel.CONTROL_PANEL_SPEED, ConstantsControlPanel.TIMER_CONTROLPANEL);
   }
   private void configureJoysticks() {
     joystick = new Joystick(Constants.JOYSTICK_ID);
