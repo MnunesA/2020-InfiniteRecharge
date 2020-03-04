@@ -15,34 +15,16 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class ConstantsClimber {
+public final class ConstantsControlPanel {
 
 /* 
 Todas as variáveis no código cujo os nomes estão escritos com todas as letras maiúsculas e com as 
 palavras separadas por underline têm sua base de valor nas classes "constants".
 */
 
-  // PWM
-  public static final int
-    MOTOR_ELEVATOR_1_ID = 6,
-    MOTOR_ELEVATOR_2_ID = 7,
-    MOTOR_CLIMBER_1_ID = 4,
-    MOTOR_CLIMBER_2_ID = 5;
+// PWM 
+public static final int 
+MOTOR_CONTROL_PANEL = 8;
 
-  // SPEEDS
-  public static final double
-    SPEED_COMMANDELEVATOR = 0.5;
-
-  //Digital Input
-  public static final int
-    ENCODER_ELEVATOR_A = 5,
-    ENCODER_ELEVATOR_B = 6;
-
-    //Digital Input Inverse
-  public static final boolean
-    ENCODER_ELEVATOR_INERTED = false;
-
-  //Encoder Elevator MAX
-  public static final int
-    ENCODER_ELEVATOR_MAX = 1167;
 }
+
