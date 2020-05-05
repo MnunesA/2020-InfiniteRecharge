@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.driver.CommandDriver;
 import frc.robot.subsystems.SubsystemDriver;
+import frc.robot.subsystems.SubsystemDriverTalonSRX;
 
 public class RobotContainer {
 
@@ -19,30 +20,22 @@ public class RobotContainer {
   private static CommandDriver runDriver;
 
   public RobotContainer() {
-    configureButtonBindings();
     configureSubsystems();
     configureCommands();
     configureJoysticks();
+    configureButtonBindings();
   }
 
   private void configureButtonBindings() {}
 
   private void configureSubsystems() {
-    driver = new SubsystemDriver(
+    driver = new SubsystemDriverTalonSRX(
             ConstantsDriver.MOTOR_LEFT_FRONT_ID,
             ConstantsDriver.MOTOR_LEFT_REAR_ID,
             ConstantsDriver.MOTOR_RIGHT_FRONT_ID,
             ConstantsDriver.MOTOR_RIGHT_REAR_ID,
-            ConstantsDriver.ENCODER_LEFT_CHANNEL_A_ID,
-            ConstantsDriver.ENCODER_LEFT_CHANNEL_B_ID,
-            ConstantsDriver.ENCODER_RIGHT_CHANNEL_A_ID,
-            ConstantsDriver.ENCODER_RIGHT_CHANNEL_B_ID,
-            ConstantsDriver.ENCODERS_MAX_PERIOD,
-            ConstantsDriver.ENCODERS_MIN_RATE,
-            ConstantsDriver.ENCODERS_DISTANCE_PER_PULSE,
             Constants.DEADBAND_VALUE,
-            ConstantsDriver.ENCODER_LEFT_INVERTED,
-            ConstantsDriver.ENCODER_RIGHT_INVERTED);
+            ConstantsDriver.THERE_IS_ENCODER);
   }
 
   private void configureCommands() {
