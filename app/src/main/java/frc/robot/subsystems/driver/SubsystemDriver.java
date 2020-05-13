@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.subsystems.driver;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -24,7 +24,7 @@ import static frc.robot.ConstantsDriver.ENCODERS_DISTANCE_PER_PULSE;
 import static frc.robot.ConstantsDriver.ENCODER_LEFT_INVERTED;
 import static frc.robot.ConstantsDriver.ENCODER_RIGHT_INVERTED;
 
-public class SubsystemDriver extends SubsystemBase {
+public abstract class SubsystemDriver extends SubsystemBase {
 
   protected double axis_LY, axis_RX;
 

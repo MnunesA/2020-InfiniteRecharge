@@ -10,8 +10,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.driver.CommandDriver;
-import frc.robot.subsystems.SubsystemDriver;
-import frc.robot.subsystems.SubsystemDriverTalonSRX;
+import frc.robot.subsystems.driver.SubsystemDriver;
+import frc.robot.subsystems.driver.SubsystemDriverTalonSRX;
 
 public class RobotContainer {
 
