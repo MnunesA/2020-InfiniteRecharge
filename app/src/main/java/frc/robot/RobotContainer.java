@@ -10,8 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.commands.CommandClimber;
 import frc.robot.commands.CommandElevator;
-import frc.robot.subsystems.SubsystemClimber;
-import frc.robot.subsystems.SubsystemElevator;
+import frc.robot.subsystems.climber.SubsystemClimber;
+import frc.robot.subsystems.climber.SubsystemClimberVictorSP;
+import frc.robot.subsystems.elevator.SubsystemElevator;
+import frc.robot.subsystems.elevator.SubsystemElevatorVictorSP;
 
 public class RobotContainer {
 
@@ -31,10 +33,11 @@ public class RobotContainer {
   private void configureButtonBindings() {}
 
   private void configureSubsystems() {
-    subsystemClimber = new SubsystemClimber(ConstantsClimber.MOTOR_CLIMBER_1_ID, 
+    subsystemClimber = new SubsystemClimberVictorSP(ConstantsClimber.MOTOR_CLIMBER_1_ID, 
     ConstantsClimber.MOTOR_CLIMBER_2_ID);
-    subsystemElevator = new SubsystemElevator(ConstantsClimber.MOTOR_ELEVATOR_1_ID,
-    ConstantsClimber.MOTOR_ELEVATOR_2_ID, ConstantsClimber.ENCODER_ELEVATOR_A, ConstantsClimber.ENCODER_ELEVATOR_B, ConstantsClimber.ENCODER_ELEVATOR_INERTED);
+    
+    subsystemElevator = new SubsystemElevatorVictorSP(ConstantsClimber.MOTOR_ELEVATOR_1_ID,
+    ConstantsClimber.MOTOR_ELEVATOR_2_ID, ConstantsClimber.THERE_IS_ENCODER);
   }
 
   private void configureCommands() {

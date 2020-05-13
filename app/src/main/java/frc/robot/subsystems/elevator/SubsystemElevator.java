@@ -5,35 +5,29 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.subsystems.elevator;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class SubsystemElevator extends SubsystemBase {
+import static frc.robot.ConstantsClimber.ENCODER_ELEVATOR_A;
+import static frc.robot.ConstantsClimber.ENCODER_ELEVATOR_B;
+import static frc.robot.ConstantsClimber.ENCODER_ELEVATOR_INVERTED;
+
+public abstract class SubsystemElevator extends SubsystemBase {
+
+  protected Encoder encoderElevator;
+
+  protected SpeedControllerGroup motorsElevator;
+
+  public SubsystemElevator(boolean thereIsEncoder) {
   
-  int MOTOR_ELE_1_ID;
-  int MOTOR_ELE_2_ID;
-  
-  VictorSP motorElevator_1;
-  VictorSP motorElevator_2;
+  if (thereIsEncoder == true) {
 
-  Encoder encoderElevator;
-
-  SpeedControllerGroup motorsElevator;
-
-  public SubsystemElevator(int MOTOR_ELE_1_ID, int MOTOR_ELE_2_ID, int ENCODER_ELE_A, int ENCODER_ELE_B, boolean ENCODER_INV) {
-    this.MOTOR_ELE_1_ID = MOTOR_ELE_1_ID;
-    this.MOTOR_ELE_2_ID = MOTOR_ELE_2_ID;
-
-    motorElevator_1 = new VictorSP(MOTOR_ELE_1_ID);
-    motorElevator_2 = new VictorSP(MOTOR_ELE_2_ID);
-
-    encoderElevator = new Encoder(ENCODER_ELE_A, ENCODER_ELE_B, ENCODER_INV, Encoder.EncodingType.k2X);
-
-    motorsElevator = new SpeedControllerGroup(motorElevator_1, motorElevator_2);
+    encoderElevator = new Encoder(ENCODER_ELEVATOR_A, ENCODER_ELEVATOR_B, ENCODER_ELEVATOR_INVERTED, Encoder.EncodingType.k2X);
+    }
   }
 
   public void setSpeedElevator(double speed) {

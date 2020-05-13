@@ -40,7 +40,7 @@ palavras separadas por underline têm sua base de valor nas classes "constants".
 
     //Digital Input Inverse
   public static final boolean
-    ENCODER_ELEVATOR_INERTED = false;
+    ENCODER_ELEVATOR_INVERTED = false;
 
   //Encoder Elevator MAX
   public static final int
