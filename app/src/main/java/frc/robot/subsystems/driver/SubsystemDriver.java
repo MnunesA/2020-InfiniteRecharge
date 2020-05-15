@@ -16,20 +16,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.ConstantsDriver.*;
 
-public class SubsystemDriver extends SubsystemBase {
+public abstract class SubsystemDriver extends SubsystemBase {
 
   protected double axis_LY, axis_RX;
+  
   protected SpeedControllerGroup motorsLeft, motorsRight;
 
   protected DifferentialDrive drivetrain;
 
   protected Encoder encoderLeft, encoderRight;
 
-  public SubsystemDriver(
-      SpeedController[] leftControllers,
-      SpeedController[] rightControllers,
-      double DEADB_VALUE,
-      boolean thereIsEncoder) {
+  public SubsystemDriver(boolean thereIsEncoder) {
 
     if (thereIsEncoder == true) {
       this.encoderLeft =
