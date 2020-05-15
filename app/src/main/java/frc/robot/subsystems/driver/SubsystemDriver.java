@@ -9,23 +9,27 @@ package frc.robot.subsystems.driver;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.ConstantsDriver.*;
 
-public abstract class SubsystemDriver extends SubsystemBase {
+public class SubsystemDriver extends SubsystemBase {
 
   protected double axis_LY, axis_RX;
-  
   protected SpeedControllerGroup motorsLeft, motorsRight;
 
   protected DifferentialDrive drivetrain;
 
   protected Encoder encoderLeft, encoderRight;
 
-  public SubsystemDriver(boolean thereIsEncoder) {
+  public SubsystemDriver(
+      SpeedController[] leftControllers,
+      SpeedController[] rightControllers,
+      double DEADB_VALUE,
+      boolean thereIsEncoder) {
 
     if (thereIsEncoder == true) {
       this.encoderLeft =

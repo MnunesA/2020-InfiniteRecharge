@@ -23,7 +23,7 @@ public final class ConstantsDriver {
   public static final int NUMBER_OF_RIGHT_CONTROLLERS = 2;
   public static final int NUMBER_OF_LEFT_CONTROLLERS = 2;
 
-  // PWM CONTROLLERS SET: 0-1 (right side) 2-3 (left side)
+  // PWM CONTROLLERS SET: 0-1 (left side) 2-3 (right side)
   public static final int FIRST_CONTROLLER_OF_THE_LEFT_ID = 0, FIRST_CONTROLLER_OF_THE_RIGHT_ID = 2;
 
   // DIO
