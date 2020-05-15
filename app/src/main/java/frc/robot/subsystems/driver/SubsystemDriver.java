@@ -30,7 +30,7 @@ public abstract class SubsystemDriver extends SubsystemBase {
 
     if (thereIsEncoder == true) {
       this.encoderLeft =
-          new Encoder(CHAN_LEFT_A_ID, CHAN_LEFT_B_ID, ENCODER_LEFT_INV, Encoder.EncodingType.k2X);
+          new Encoder(CHAN_LEFT_A_ID, CHAN_LEFT_B_ID, ENCODER_LEFT_INVERTED, Encoder.EncodingType.k2X);
 
       this.encoderLeft.setMaxPeriod(MAX_PERIOD);
       this.encoderLeft.setMinRate(MIN_RATE);
@@ -38,7 +38,7 @@ public abstract class SubsystemDriver extends SubsystemBase {
 
       this.encoderRight =
           new Encoder(
-              CHAN_RIGHT_A_ID, CHAN_RIGHT_B_ID, ENCODER_RIGHT_INV, Encoder.EncodingType.k2X);
+              CHAN_RIGHT_A_ID, CHAN_RIGHT_B_ID, ENCODER_RIGHT_INVERTED, Encoder.EncodingType.k2X);
 
       this.encoderRight.setMaxPeriod(MAX_PERIOD);
       this.encoderRight.setMinRate(MIN_RATE);
