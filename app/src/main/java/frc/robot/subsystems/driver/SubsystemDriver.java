@@ -9,18 +9,14 @@ package frc.robot.subsystems.driver;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import static frc.robot.ConstantsDriver.*;
 
 public abstract class SubsystemDriver extends SubsystemBase {
 
   protected double axis_LY, axis_RX;
-  
-  protected SpeedControllerGroup motorsLeft, motorsRight;
 
   protected DifferentialDrive drivetrain;
 
@@ -28,9 +24,10 @@ public abstract class SubsystemDriver extends SubsystemBase {
 
   public SubsystemDriver(boolean thereIsEncoder) {
 
-    if (thereIsEncoder == true) {
+    if (thereIsEncoder) {
       this.encoderLeft =
-          new Encoder(CHAN_LEFT_A_ID, CHAN_LEFT_B_ID, ENCODER_LEFT_INVERTED, Encoder.EncodingType.k2X);
+          new Encoder(
+              CHAN_LEFT_A_ID, CHAN_LEFT_B_ID, ENCODER_LEFT_INVERTED, Encoder.EncodingType.k2X);
 
       this.encoderLeft.setMaxPeriod(MAX_PERIOD);
       this.encoderLeft.setMinRate(MIN_RATE);

@@ -8,30 +8,30 @@
 package frc.robot.subsystems.driver;
 
 import edu.wpi.first.wpilibj.VictorSP;
+import java.util.ArrayList;
+import java.util.List;
 import static frc.robot.ConstantsDriver.*;
 
 public class SubsystemDriverVictorSP extends SubsystemDriver {
 
-  private int leftID;
-  private int rightID;
+  private List<VictorSP> leftControllers;
+  private List<VictorSP> rightControllers;
 
   public SubsystemDriverVictorSP(
-      VictorSP[] leftControllers,
-      VictorSP[] rightControllers,
-      double DEADB_VALUE,
-      boolean thereIsEncoder) {
+      List<Integer> leftID, List<Integer> rightID, double DEADB_VALUE, boolean thereIsEncoder) {
     super(thereIsEncoder);
 
-    for (int i = 0; i < leftControllers.length; i++) {
-      leftID = FIRST_CONTROLLER_OF_THE_LEFT_ID + i;
-      leftControllers[i] = new VictorSP(leftID);
-    }
+    leftControllers = new ArrayList<VictorSP>();
+    rightControllers = new ArrayList<VictorSP>();
 
-    for (int i = 0; i < rightControllers.length; i++) {
-      rightID = FIRST_CONTROLLER_OF_THE_RIGHT_ID + i;
-      rightControllers[i] = new VictorSP(rightID);
+    for (Integer ID : leftID) {
+      leftControllers.add(new VictorSP(ID));
     }
-
+    
+    for (Integer ID : rightID) {
+      leftControllers.add(new VictorSP(ID));
+    }
+    
     motorsLeft = new SpeedControllerGroup(leftControllers);
     motorsRight = new SpeedControllerGroup(rightControllers);
 

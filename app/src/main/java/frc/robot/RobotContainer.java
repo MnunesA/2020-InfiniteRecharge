@@ -14,11 +14,6 @@ import frc.robot.commands.driver.CommandDriver;
 import frc.robot.subsystems.driver.SubsystemDriver;
 import frc.robot.subsystems.driver.SubsystemDriverTalonSRX;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.VictorSP;
-
 public class RobotContainer {
 
   private static SubsystemDriver driver;
@@ -35,9 +30,10 @@ public class RobotContainer {
   private void configureButtonBindings() {}
 
   private void configureSubsystems() {
-    driver = new SubsystemDriverTalonSRX(
-            new WPI_TalonSRX[ConstantsDriver.NUMBER_OF_LEFT_CONTROLLERS],
-            new WPI_TalonSRX[ConstantsDriver.NUMBER_OF_RIGHT_CONTROLLERS],
+    driver =
+        new SubsystemDriverTalonSRX(
+            ConstantsDriver.leftID,
+            ConstantsDriver.rightID,
             Constants.DEADBAND_VALUE,
             ConstantsDriver.THERE_IS_ENCODER);
   }
@@ -45,6 +41,7 @@ public class RobotContainer {
   private void configureCommands() {
     runDriver = new CommandDriver(driver);
   }
+
   private void configureJoysticks() {
     xboxController = new XboxController(Constants.XBOX_ID);
   }
@@ -61,26 +58,26 @@ public class RobotContainer {
       return m_autoCommand;
     }
   */
-  
+
   public static SubsystemDriver subsDriver() {
     return driver;
   }
-  
-  public static XboxController xboxController(){
+
+  public static XboxController xboxController() {
     return xboxController;
   }
-  
+
   // Obtém o valor referente ao eixo LY do controle de XBOX
-  public static double axis_LY(){
+  public static double axis_LY() {
     return ConstantsDriver.LIMITER_LINEAR * xboxController.getRawAxis(1);
   }
-  
-    // Obtém o valor referente ao eixo RX do controle de XBOX invertido
-  public static double axis_RX(){
+
+  // Obtém o valor referente ao eixo RX do controle de XBOX invertido
+  public static double axis_RX() {
     return ConstantsDriver.LIMITER_ROTATION * xboxController.getRawAxis(4);
   }
-  
-  public static CommandDriver commDriver(){
+
+  public static CommandDriver commDriver() {
     return runDriver;
   }
 }

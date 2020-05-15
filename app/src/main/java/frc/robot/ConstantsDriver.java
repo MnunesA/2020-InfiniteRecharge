@@ -8,37 +8,48 @@
 package frc.robot;
 
 import static frc.robot.Constants.CIRCUMFERENCE_WHEEL;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
- * The ConstantsDriver class provides a convenient place for teams to hold robot-wide numerical or
+ * The Constant class provides a convenient place for teams to hold robot-wide numerical or
  * boolean constants. This class should not be used for any other purpose. All constants should be
  * declared globally (i.e. public static). Do not put anything functional in this class.
  *
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+ 
 public final class ConstantsDriver {
 
-  // Number of Controllers
-  public static final int NUMBER_OF_RIGHT_CONTROLLERS = 2;
-  public static final int NUMBER_OF_LEFT_CONTROLLERS = 2;
-
-  // PWM CONTROLLERS SET: 0-1 (left side) 2-3 (right side)
-  public static final int FIRST_CONTROLLER_OF_THE_LEFT_ID = 0, FIRST_CONTROLLER_OF_THE_RIGHT_ID = 2;
+  // ID's from controllers
+  List<Integer> leftID = new ArrayList<Integer>(){
+    {
+     add(0);
+     add(1);
+    }
+  };
+   
+  List<Integer> rightID = new ArrayList<Integer>(){
+    {
+     add(2);
+     add(3);
+    }
+  };
 
   // DIO
   public static final boolean THERE_IS_ENCODER = true;
 
-  public static final int ENCODER_LEFT_CHANNEL_A_ID = 3,
-      ENCODER_LEFT_CHANNEL_B_ID = 4,
-      ENCODER_RIGHT_CHANNEL_A_ID = 5,
-      ENCODER_RIGHT_CHANNEL_B_ID = 6;
+  public static final int CHAN_LEFT_A_ID = 3,
+      CHAN_LEFT_B_ID = 4,
+      CHAN_RIGHT_A_ID = 5,
+      CHAN_RIGHT_B_ID = 6;
 
   // ENCODERS SPECIFICATIONS
-  public static final double ENCODERS_MAX_PERIOD = 0.5, // second
-      ENCODERS_MIN_RATE = 0.05, // meters per second
-      ENCODERS_RESOLUTION = 2048, // Pulses Per Rotation
-      ENCODERS_DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL / ENCODERS_RESOLUTION) / 2) / 1; // meters
+  public static final double MAX_PERIOD = 0.5, // second
+      MIN_RATE = 0.05, // meters per second
+      RESOLUTION = 2048, // Pulses Per Rotation
+      DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL / RESOLUTION) / 2) / 1; // meters
   public static final boolean
       // Inverter sentido de contagem do Encoder da tração
       ENCODER_LEFT_INVERTED = false,
