@@ -13,6 +13,9 @@ import static frc.robot.ConstantsDriver.*;
 
 public class SubsystemDriverTalonSRX extends SubsystemDriver {
 
+  private int leftID;
+  private int rightID;
+
   public SubsystemDriverTalonSRX(
       WPI_TalonSRX[] leftControllers,
       WPI_TalonSRX[] rightControllers,
@@ -21,13 +24,13 @@ public class SubsystemDriverTalonSRX extends SubsystemDriver {
     super(thereIsEncoder);
 
     for (int i = 0; i < leftControllers.length; i++) {
-      leftControllers[FIRST_CONTROLLER_OF_THE_LEFT_ID + i] =
-          new WPI_TalonSRX(FIRST_CONTROLLER_OF_THE_LEFT_ID + i);
+      leftID = FIRST_CONTROLLER_OF_THE_LEFT_ID + i;
+      leftControllers[i] = new WPI_TalonSRX(leftID);
     }
 
     for (int i = 0; i < rightControllers.length; i++) {
-      rightControllers[FIRST_CONTROLLER_OF_THE_RIGHT_ID + i] =
-          new WPI_TalonSRX(FIRST_CONTROLLER_OF_THE_RIGHT_ID + i);
+      rightID = FIRST_CONTROLLER_OF_THE_RIGHT_ID + i;
+      rightControllers[i] = new WPI_TalonSRX(rightID);
     }
 
     motorsLeft = new SpeedControllerGroup(leftControllers);

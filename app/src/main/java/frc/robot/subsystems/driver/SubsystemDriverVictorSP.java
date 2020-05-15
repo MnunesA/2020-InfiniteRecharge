@@ -12,6 +12,9 @@ import static frc.robot.ConstantsDriver.*;
 
 public class SubsystemDriverVictorSP extends SubsystemDriver {
 
+  private int leftID;
+  private int rightID;
+
   public SubsystemDriverVictorSP(
       VictorSP[] leftControllers,
       VictorSP[] rightControllers,
@@ -20,13 +23,13 @@ public class SubsystemDriverVictorSP extends SubsystemDriver {
     super(thereIsEncoder);
 
     for (int i = 0; i < leftControllers.length; i++) {
-      leftControllers[FIRST_CONTROLLER_OF_THE_LEFT_ID + i] =
-          new VictorSP(FIRST_CONTROLLER_OF_THE_LEFT_ID + i);
+      leftID = FIRST_CONTROLLER_OF_THE_LEFT_ID + i;
+      leftControllers[i] = new VictorSP(leftID);
     }
 
     for (int i = 0; i < rightControllers.length; i++) {
-      rightControllers[FIRST_CONTROLLER_OF_THE_RIGHT_ID + i] =
-          new VictorSP(FIRST_CONTROLLER_OF_THE_RIGHT_ID + i);
+      rightID = FIRST_CONTROLLER_OF_THE_RIGHT_ID + i;
+      rightControllers[i] = new VictorSP(rightID);
     }
 
     motorsLeft = new SpeedControllerGroup(leftControllers);
