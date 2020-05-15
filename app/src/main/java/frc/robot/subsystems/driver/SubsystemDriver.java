@@ -13,22 +13,13 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.ConstantsDriver.ENCODER_LEFT_CHANNEL_A_ID;
-import static frc.robot.ConstantsDriver.ENCODER_LEFT_CHANNEL_B_ID;
-import static frc.robot.ConstantsDriver.ENCODER_RIGHT_CHANNEL_A_ID
-import static frc.robot.ConstantsDriver.ENCODER_RIGHT_CHANNEL_B_ID;
-import static frc.robot.ConstantsDriver.ENCODERS_MAX_PERIOD;
-import static frc.robot.ConstantsDriver.ENCODERS_MIN_RATE;
-import static frc.robot.ConstantsDriver.ENCODERS_RESOLUTION;
-import static frc.robot.ConstantsDriver.ENCODERS_DISTANCE_PER_PULSE;
-import static frc.robot.ConstantsDriver.ENCODER_LEFT_INVERTED;
-import static frc.robot.ConstantsDriver.ENCODER_RIGHT_INVERTED;
+import static frc.robot.ConstantsDriver.*;
 
 public abstract class SubsystemDriver extends SubsystemBase {
 
   protected double axis_LY, axis_RX;
-
-  protected SpeedControllerGroup motorLeft, motorRight;
+  
+  protected SpeedControllerGroup motorsLeft, motorsRight;
 
   protected DifferentialDrive drivetrain;
 
@@ -37,13 +28,16 @@ public abstract class SubsystemDriver extends SubsystemBase {
   public SubsystemDriver(boolean thereIsEncoder) {
 
     if (thereIsEncoder == true) {
-      this.encoderLeft = new Encoder(CHAN_LEFT_A_ID, CHAN_LEFT_B_ID, ENCODER_LEFT_INV, Encoder.EncodingType.k2X);
+      this.encoderLeft =
+          new Encoder(CHAN_LEFT_A_ID, CHAN_LEFT_B_ID, ENCODER_LEFT_INV, Encoder.EncodingType.k2X);
 
       this.encoderLeft.setMaxPeriod(MAX_PERIOD);
       this.encoderLeft.setMinRate(MIN_RATE);
       this.encoderLeft.setDistancePerPulse(DISTANCE_PER_PULSE);
 
-      this.encoderRight = new Encoder(CHAN_RIGHT_A_ID, CHAN_RIGHT_B_ID, ENCODER_RIGHT_INV, Encoder.EncodingType.k2X);
+      this.encoderRight =
+          new Encoder(
+              CHAN_RIGHT_A_ID, CHAN_RIGHT_B_ID, ENCODER_RIGHT_INV, Encoder.EncodingType.k2X);
 
       this.encoderRight.setMaxPeriod(MAX_PERIOD);
       this.encoderRight.setMinRate(MIN_RATE);

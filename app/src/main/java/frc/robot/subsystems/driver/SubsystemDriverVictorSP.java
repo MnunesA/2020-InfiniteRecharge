@@ -8,29 +8,31 @@
 package frc.robot.subsystems.driver;
 
 import edu.wpi.first.wpilibj.VictorSP;
+import static frc.robot.ConstantsDriver.*;
 
 public class SubsystemDriverVictorSP extends SubsystemDriver {
 
-  private VictorSP motorLeftFront, motorLeftRear, motorRightFront, motorRightRear;
-
   public SubsystemDriverVictorSP(
-      int LF_ID,
-      int LR_ID,
-      int RF_ID,
-      int RR_ID,
+      VictorSP[] leftControllers,
+      VictorSP[] rightControllers,
       double DEADB_VALUE,
       boolean thereIsEncoder) {
-      super(thereIsEncoder);
+    super(thereIsEncoder);
 
-    motorLeftFront = new VictorSP(LF_ID);
-    motorLeftRear = new VictorSP(LR_ID);
-    motorRightFront = new VictorSP(RF_ID);
-    motorRightRear = new VictorSP(RR_ID);
+    for (int i = 0; i < leftControllers.length; i++) {
+      leftControllers[FIRST_CONTROLLER_OF_THE_LEFT_ID + i] =
+          new VictorSP(FIRST_CONTROLLER_OF_THE_LEFT_ID + i);
+    }
 
-    this.motorLeft = new SpeedControllerGroup(motorLeftFront, motorLeftRear);
-    this.motorRight = new SpeedControllerGroup(motorRightFront, motorRightRear);
+    for (int i = 0; i < rightControllers.length; i++) {
+      rightControllers[FIRST_CONTROLLER_OF_THE_RIGHT_ID + i] =
+          new VictorSP(FIRST_CONTROLLER_OF_THE_RIGHT_ID + i);
+    }
 
-    drivetrain = new DifferentialDrive(motorLeft, motorRight);
+    motorsLeft = new SpeedControllerGroup(leftControllers);
+    motorsRight = new SpeedControllerGroup(rightControllers);
+
+    drivetrain = new DifferentialDrive(motorsLeft, motorsRight);
     drivetrain.setDeadband(DEADB_VALUE);
   }
 }

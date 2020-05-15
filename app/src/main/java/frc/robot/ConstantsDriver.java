@@ -19,11 +19,12 @@ import static frc.robot.Constants.CIRCUMFERENCE_WHEEL;
  */
 public final class ConstantsDriver {
 
-  // PWM
-  public static final int MOTOR_RIGHT_FRONT_ID = 0,
-      MOTOR_RIGHT_REAR_ID = 1,
-      MOTOR_LEFT_FRONT_ID = 2,
-      MOTOR_LEFT_REAR_ID = 3;
+  // Number of Controllers
+  public static final int NUMBER_OF_RIGHT_CONTROLLERS = 2;
+  public static final int NUMBER_OF_LEFT_CONTROLLERS = 2;
+
+  // PWM CONTROLLERS SET: 0-1 (right side) 2-3 (left side)
+  public static final int FIRST_CONTROLLER_OF_THE_LEFT_ID = 0, FIRST_CONTROLLER_OF_THE_RIGHT_ID = 2;
 
   // DIO
   public static final boolean THERE_IS_ENCODER = true;

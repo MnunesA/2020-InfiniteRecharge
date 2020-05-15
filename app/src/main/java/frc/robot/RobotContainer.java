@@ -9,9 +9,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+
 import frc.robot.commands.driver.CommandDriver;
 import frc.robot.subsystems.driver.SubsystemDriver;
 import frc.robot.subsystems.driver.SubsystemDriverTalonSRX;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.VictorSP;
 
 public class RobotContainer {
 
@@ -30,10 +36,8 @@ public class RobotContainer {
 
   private void configureSubsystems() {
     driver = new SubsystemDriverTalonSRX(
-            ConstantsDriver.MOTOR_LEFT_FRONT_ID,
-            ConstantsDriver.MOTOR_LEFT_REAR_ID,
-            ConstantsDriver.MOTOR_RIGHT_FRONT_ID,
-            ConstantsDriver.MOTOR_RIGHT_REAR_ID,
+            new WPI_TalonSRX[ConstantsDriver.NUMBER_OF_LEFT_CONTROLLERS],
+            new WPI_TalonSRX[ConstantsDriver.NUMBER_OF_RIGHT_CONTROLLERS],
             Constants.DEADBAND_VALUE,
             ConstantsDriver.THERE_IS_ENCODER);
   }
