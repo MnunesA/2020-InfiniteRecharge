@@ -11,15 +11,15 @@ import edu.wpi.first.wpilibj.VictorSP;
 import java.util.ArrayList;
 import java.util.List;
 import static frc.robot.ConstantsDriver.*;
+import edu.wpi.first.wpilibj.SpeedController;
 
-public class SubsystemDriverVictorSP extends SubsystemDriver {
+public class SubsystemDriverVictorSP implements SpeedControllerType {
 
   private List<VictorSP> leftControllers;
   private List<VictorSP> rightControllers;
 
   public SubsystemDriverVictorSP(
-      List<Integer> leftID, List<Integer> rightID, double DEADB_VALUE, boolean thereIsEncoder) {
-    super(thereIsEncoder);
+      List<Integer> leftID, List<Integer> rightID) {
 
     leftControllers = new ArrayList<VictorSP>();
     rightControllers = new ArrayList<VictorSP>();
@@ -32,10 +32,13 @@ public class SubsystemDriverVictorSP extends SubsystemDriver {
       leftControllers.add(new VictorSP(ID));
     }
     
-    motorsLeft = new SpeedControllerGroup(leftControllers);
-    motorsRight = new SpeedControllerGroup(rightControllers);
-
-    drivetrain = new DifferentialDrive(motorsLeft, motorsRight);
-    drivetrain.setDeadband(DEADB_VALUE);
+  @Override
+  public List<SpeedController> getLeftControllers() {
+    return leftControllers;
+  }
+  
+  @Override
+  public List<SpeedController> getRightControllers() {
+    return rightControllers;
   }
 }

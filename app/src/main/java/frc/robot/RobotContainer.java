@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.driver.CommandDriver;
 import frc.robot.subsystems.driver.SubsystemDriver;
 import frc.robot.subsystems.driver.SubsystemDriverTalonSRX;
+import frc.robot.subsystems.driver.SubsystemDriverVictorSP;
 
 public class RobotContainer {
 
@@ -31,9 +32,8 @@ public class RobotContainer {
 
   private void configureSubsystems() {
     driver =
-        new SubsystemDriverTalonSRX(
-            ConstantsDriver.leftID,
-            ConstantsDriver.rightID,
+        new SubsystemDriver(
+            new SubsystemDriverTalonSRX(ConstantsDriver.leftID, ConstantsDriver.rightID),
             Constants.DEADBAND_VALUE,
             ConstantsDriver.THERE_IS_ENCODER);
   }

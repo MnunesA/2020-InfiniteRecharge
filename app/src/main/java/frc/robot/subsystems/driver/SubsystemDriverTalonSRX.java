@@ -10,15 +10,17 @@ package frc.robot.subsystems.driver;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import static frc.robot.ConstantsDriver.*;
+import java.util.ArrayList;
+import java.util.List;
+import edu.wpi.first.wpilibj.SpeedController;
 
-public class SubsystemDriverTalonSRX extends SubsystemDriver {
+public class SubsystemDriverTalonSRX implements SpeedControllerType {
 
   private List<WPI_TalonSRX> leftControllers;
   private List<WPI_TalonSRX> rightControllers;
 
   public SubsystemDriverTalonSRX(
-      List<Integer> leftID, List<Integer> rightID, double DEADB_VALUE, boolean thereIsEncoder) {
-    super(thereIsEncoder);
+      List<Integer> leftID, List<Integer> rightID) {
 
     leftControllers = new ArrayList<WPI_TalonSRX>();
     rightControllers = new ArrayList<WPI_TalonSRX>();
@@ -31,10 +33,13 @@ public class SubsystemDriverTalonSRX extends SubsystemDriver {
       rightControllers.add(new WPI_TalonSRX(ID));
     }
     
-    motorsLeft = new SpeedControllerGroup(leftControllers);
-    motorsRight = new SpeedControllerGroup(rightControllers);
-
-    drivetrain = new DifferentialDrive(motorsLeft, motorsRight);
-    drivetrain.setDeadband(DEADB_VALUE);
+  @Override
+  public List<SpeedController> getLeftControllers() {
+    return leftControllers;
+  }
+  
+  @Override
+  public List<SpeedController> getRightControllers() {
+    return rightControllers;
   }
 }

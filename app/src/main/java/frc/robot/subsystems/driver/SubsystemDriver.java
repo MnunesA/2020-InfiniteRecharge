@@ -12,19 +12,32 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.driver.SpeedControllerType;
 import static frc.robot.ConstantsDriver.*;
 
-public abstract class SubsystemDriver extends SubsystemBase {
+public class SubsystemDriver extends SubsystemBase {
 
-  protected double axis_LY, axis_RX;
+  private DifferentialDrive drivetrain;
+  private Encoder encoderLeft, encoderRight;
+  private SpeedControllerGroup motorsLeft, motorsRight;
 
-  protected DifferentialDrive drivetrain;
+  public SubsystemDriver(SpeedControllerType sc, double DEADB_VALUE) {
+  
+    motorsLeft = new SpeedControllerGroup(sc::getLeftControllers);
+    motorsRight = new SpeedControllerGroup(sc::getRightControllers);
 
-  protected Encoder encoderLeft, encoderRight;
+    drivetrain = new DifferentialDrive(motorsLeft, motorsRight);
+    drivetrain.setDeadband(DEADB_VALUE);
+  }
 
-  public SubsystemDriver(boolean thereIsEncoder) {
+  public SubsystemDriver(SpeedControllerType sc, double DEADB_VALUE, boolean thereIsEncoder) {
+  
+    motorsLeft = new SpeedControllerGroup(sc::getLeftControllers);
+    motorsRight = new SpeedControllerGroup(sc::getRightControllers);
 
-    if (thereIsEncoder) {
+    drivetrain = new DifferentialDrive(motorsLeft, motorsRight);
+    drivetrain.setDeadband(DEADB_VALUE);
+
       this.encoderLeft =
           new Encoder(
               CHAN_LEFT_A_ID, CHAN_LEFT_B_ID, ENCODER_LEFT_INVERTED, Encoder.EncodingType.k2X);
@@ -40,13 +53,10 @@ public abstract class SubsystemDriver extends SubsystemBase {
       this.encoderRight.setMaxPeriod(MAX_PERIOD);
       this.encoderRight.setMinRate(MIN_RATE);
       this.encoderRight.setDistancePerPulse(DISTANCE_PER_PULSE);
-    }
   }
 
   public void arcadeDrive(double linearSpeed, double rotationSpeed) {
     this.drivetrain.arcadeDrive(linearSpeed, rotationSpeed);
-    this.axis_LY = linearSpeed;
-    this.axis_RX = rotationSpeed;
   }
 
   public void setLinearSpeedDrivetrain(double linearSpeed) {
@@ -73,15 +83,13 @@ public abstract class SubsystemDriver extends SubsystemBase {
     return this.encoderRight.getDistance();
   }
 
-  public void resetEncoder() {
+  public void resetEncoders() {
     this.encoderRight.reset();
     this.encoderLeft.reset();
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("LY Axis", this.axis_LY);
-    SmartDashboard.putNumber("RX Axis", this.axis_RX);
     SmartDashboard.putNumber("Pulses Encoder Left", getPulsesEncoderLeft());
     SmartDashboard.putNumber("Distance Walked Left", getDistanceEncoderLeft());
     SmartDashboard.putNumber("Pulses Encoder Right", getPulsesEncoderRight());
