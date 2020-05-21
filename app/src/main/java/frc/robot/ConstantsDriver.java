@@ -7,7 +7,10 @@
 
 package frc.robot;
 
-import static frc.robot.Constants.CIRCUMFERENCE_WHEEL;
+import static frc.robot.Constants.*;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -22,39 +25,56 @@ import java.util.ArrayList;
  
 public final class ConstantsDriver {
 
+/*****************************************************************************/
+
   // ID's from controllers
   List<Integer> leftID = new ArrayList<Integer>(){
     {
-     add(0);
-     add(1);
+     add(CHANNEL_PWM_0);
+     add(CHANNEL_PWM_1);
     }
   };
    
   List<Integer> rightID = new ArrayList<Integer>(){
     {
-     add(2);
-     add(3);
+     add(CHANNEL_PWM_2);
+     add(CHANNEL_PWM_3);
     }
   };
+  
+/*****************************************************************************/
 
-  // DIO
-  public static final boolean THERE_IS_ENCODER = true;
-
-  public static final int CHAN_LEFT_A_ID = 3,
-      CHAN_LEFT_B_ID = 4,
-      CHAN_RIGHT_A_ID = 5,
-      CHAN_RIGHT_B_ID = 6;
-
-  // ENCODERS SPECIFICATIONS
-  public static final double MAX_PERIOD = 0.5, // second
-      MIN_RATE = 0.05, // meters per second
-      RESOLUTION = 2048, // Pulses Per Rotation
-      DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL / RESOLUTION) / 2) / 1; // meters
+  //Sensors
   public static final boolean
-      // Inverter sentido de contagem do Encoder da tração
-      ENCODER_LEFT_INVERTED = false,
-      ENCODER_RIGHT_INVERTED = false;
+    ENCODER_LEFT_INVERTED = false,
+    ENCODER_RIGHT_INVERTED = false;
+  
+    Encoder encoderLeft = new Encoder(CHANNEL_DIO_3, CHANNEL_DIO_4, ENCODER_LEFT_INVERTED, Encoder.EncodingType.k2X);
+  
+    Encoder encoderRight = new Encoder(CHANNEL_DIO_5, CHANNEL_DIO_6, ENCODER_RIGHT_INVERTED, Encoder.EncodingType.k2X);
+  
+    DigitalInput limitSwitch = null;
+  
+    AnalogGyro gyro = null;
+  
+/*****************************************************************************/
+  
+  // Encoders specifications
+  public static final double
+    MAX_PERIOD = 0.5, // second
+    MIN_RATE = 0.05, // meters per second
+    RESOLUTION = 2048, // Pulses Per Rotation
+    DISTANCE_PER_PULSE = ((CIRCUMFERENCE_WHEEL / RESOLUTION) / 2) / 1; // meters
 
-  // SPEED LIMITER
-  public static final double LIMITER_LINEAR = -0.7, LIMITER_ROTATION = 0.6;
+/*****************************************************************************/
+
+  // Speed limiter and final speed for driver
+  public static final double
+    LIMITER_LINEAR = -0.7,
+    LIMITER_ROTATION = 0.6,
+    
+    LINEAR_SPEED = LIMITER_LINEAR * xboxController.getRawAxis(1),
+    ROTATION_SPEED = LIMITER_ROTATION * xboxController.getRawAxis(4);
+    
+/*****************************************************************************/
 }

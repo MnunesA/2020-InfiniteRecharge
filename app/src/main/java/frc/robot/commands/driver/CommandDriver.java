@@ -8,7 +8,8 @@
 package frc.robot.commands.driver;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.RobotContainer;
+import static frc.robot.ConstantsDriver.LINEAR_SPEED;
+import static frc.robot.ConstantsDriver.ROTATION_SPEED;
 import frc.robot.subsystems.SubsystemDriver;
 
 public class CommandDriver extends CommandBase {
@@ -29,8 +30,8 @@ public class CommandDriver extends CommandBase {
  
   @Override
   public void execute() {
-    this.linearSpeed = RobotContainer.axis_LY();
-    this.rotationSpeed = RobotContainer.axis_RX();
+    this.linearSpeed = LINEAR_SPEED;
+    this.rotationSpeed = ROTATION_SPEED;
     this.subsDriver.arcadeDrive(this.linearSpeed, this.rotationSpeed);
   }
   

@@ -9,11 +9,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-
 import frc.robot.commands.driver.CommandDriver;
+import frc.robot.controllersTypes.simpleTypes.TalonSRXType;
+import frc.robot.controllersTypes.simpleTypes.VictorSPType;
+import frc.robot.controllersTypes.simpleTypes.SparkType;
+import frc.robot.controllersTypes.doubleTypes.TalonsrxVictorspType;
 import frc.robot.subsystems.driver.SubsystemDriver;
-import frc.robot.subsystems.driver.SubsystemDriverTalonSRX;
-import frc.robot.subsystems.driver.SubsystemDriverVictorSP;
 
 public class RobotContainer {
 
@@ -33,9 +34,12 @@ public class RobotContainer {
   private void configureSubsystems() {
     driver =
         new SubsystemDriver(
-            new SubsystemDriverTalonSRX(ConstantsDriver.leftID, ConstantsDriver.rightID),
+            new TalonSRXType(ConstantsDriver.leftID, ConstantsDriver.rightID),
             Constants.DEADBAND_VALUE,
-            ConstantsDriver.THERE_IS_ENCODER);
+            ConstantsDriver.encoderLeft,
+            ConstantsDriver.encoderRight,
+            ConstantsDriver.gyro,
+            ConstantsDriver.limitSwitch);
   }
 
   private void configureCommands() {
@@ -66,17 +70,7 @@ public class RobotContainer {
   public static XboxController xboxController() {
     return xboxController;
   }
-
-  // Obtém o valor referente ao eixo LY do controle de XBOX
-  public static double axis_LY() {
-    return ConstantsDriver.LIMITER_LINEAR * xboxController.getRawAxis(1);
-  }
-
-  // Obtém o valor referente ao eixo RX do controle de XBOX invertido
-  public static double axis_RX() {
-    return ConstantsDriver.LIMITER_ROTATION * xboxController.getRawAxis(4);
-  }
-
+  
   public static CommandDriver commDriver() {
     return runDriver;
   }

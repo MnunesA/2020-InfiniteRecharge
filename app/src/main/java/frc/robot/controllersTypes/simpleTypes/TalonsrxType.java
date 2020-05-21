@@ -5,26 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems.driver;
+package frc.robot.controllersTypes.simpleTypes;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import static frc.robot.ConstantsDriver.*;
-import java.util.ArrayList;
+import frc.robot.controllersTypes.simpleTypes.speedControllerGeneric;
 import java.util.List;
-import edu.wpi.first.wpilibj.SpeedController;
 
-public class SubsystemDriverTalonSRX implements SpeedControllerType {
+public class TalonsrxType extends SpeedControllerTypeSimple {
 
-  private List<WPI_TalonSRX> leftControllers;
-  private List<WPI_TalonSRX> rightControllers;
-
-  public SubsystemDriverTalonSRX(
-      List<Integer> leftID, List<Integer> rightID) {
-
-    leftControllers = new ArrayList<WPI_TalonSRX>();
-    rightControllers = new ArrayList<WPI_TalonSRX>();
-
+  public TalonsrxType(List<Integer> leftID, List<Integer> rightID) {
+      super();
     for (Integer ID : leftID) {
       leftControllers.add(new WPI_TalonSRX(ID));
     }
@@ -33,13 +24,9 @@ public class SubsystemDriverTalonSRX implements SpeedControllerType {
       rightControllers.add(new WPI_TalonSRX(ID));
     }
     
-  @Override
-  public List<SpeedController> getLeftControllers() {
-    return leftControllers;
-  }
-  
-  @Override
-  public List<SpeedController> getRightControllers() {
-    return rightControllers;
-  }
+  public TalonsrxType(List<Integer> controllersID) {
+      super();
+    for (Integer ID : controllersID) {
+      controllers.add(new WPI_TalonSRX(ID));
+    }
 }
