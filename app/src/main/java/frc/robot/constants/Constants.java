@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.constants;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -31,7 +31,7 @@ public final class Constants {
       CIRCUMFERENCE_WHEEL = (2 * 3.1415 * (0.0254 * 6) / 2), // meters
       DEADBAND_VALUE = 0.04;
 
-/*****************************************************************************/
+/**************************************************************************//***/
 
   // CONTROLLERS JOYSTICK
   public static final int XBOX_ID = 0,

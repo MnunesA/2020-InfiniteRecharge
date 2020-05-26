@@ -8,8 +8,8 @@
 package frc.robot.commands.driver;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import static frc.robot.ConstantsDriver.LINEAR_SPEED;
-import static frc.robot.ConstantsDriver.ROTATION_SPEED;
+import static frc.robot.constants.ConstantsDriver.LINEAR_SPEED;
+import static frc.robot.constants.ConstantsDriver.ROTATION_SPEED;
 import frc.robot.subsystems.SubsystemDriver;
 
 public class CommandDriver extends CommandBase {

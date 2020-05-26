@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import frc.robot.constants.Constants;
+import frc.robot.constants.ConstantsDriver;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.driver.CommandDriver;
 import frc.robot.controllersTypes.simpleTypes.TalonSRXType;
@@ -18,9 +20,9 @@ import frc.robot.subsystems.driver.SubsystemDriver;
 
 public class RobotContainer {
 
-  private static SubsystemDriver driver;
-  private static XboxController xboxController;
-  private static CommandDriver runDriver;
+  private SubsystemDriver driver;
+  private XboxController xboxController;
+  private CommandDriver runDriver;
 
   public RobotContainer() {
     configureSubsystems();
@@ -70,7 +72,7 @@ public class RobotContainer {
   public static XboxController xboxController() {
     return xboxController;
   }
-  
+
   public static CommandDriver commDriver() {
     return runDriver;
   }
